@@ -4,6 +4,9 @@
 const express = require('express');
 const data = require("./data");
 const app = express();
+const fs = require('fs');
+const path = require('path');
+const dirPath = path.join(__dirname,'../', '/frontend/index.html');
 require('dotenv').config();
 
 const { auth, requiresAuth } = require('express-openid-connect');
@@ -21,7 +24,8 @@ app.use(
 
 // req.isAuthenticated is provided from the auth router
 app.get('/', (request, response) => {
-  response.sendFile(__dirname+'/frontend/index.html');
+  
+  response.sendFile(dirPath);
   //response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 });
 
