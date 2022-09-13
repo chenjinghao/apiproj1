@@ -21,7 +21,7 @@ app.use(
 
 // req.isAuthenticated is provided from the auth router
 app.get('/', (request, response) => {
-  response.redirect('/index.html');
+  response.sendFile('/frontend/index.html');
   //response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 });
 
