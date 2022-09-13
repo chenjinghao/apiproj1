@@ -1,1 +1,1 @@
-web: node ./20220909backend/authdemo.js
+web: node ./backend/authdemo.js

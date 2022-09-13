@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Accounts</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="styles.css" rel="stylesheet">
+
+    <!-- Script for adding new rows -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+</head>
+
+<body>
+
+    <body class="bg-light">
+        <div class="container">
+            <div class="py-5 text-center">
+                <img class="d-block mx-auto mb-4" src="https://cdn-icons-png.flaticon.com/512/639/639365.png" alt=""
+                    width="72" height="72">
+                <h2>Asset Balance</h2>
+                <p class="lead">List your balances in varous accounts</p>
+            </div>
+
+            <div class="container py-1">
+                <div class="row">
+                    <div class="col-lg-7 mx-auto">
+                        <!--  Bootstrap table-->
+                        <div class="table-responsive">
+                            <table class="table text-center">
+                                <thead>
+                                    <tr class=>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Account Name</th>
+                                        <th scope="col">Balance in SGD</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>DBS</td>
+                                        <td >5000</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>UOB</td>
+                                        <td>2000</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Buttons-->
+                        <div class="d-flex justify-content-around">
+                            <a class="btn btn-secondary w-25" id="insertRow" href="#">Add Accounts</a>
+                            <button type="button" class="btn btn-primary w-25">Submit</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <script src="script.js"></script>
+    </body>
+
+</html>
