@@ -13,7 +13,7 @@ $(function () {
 
         // Table columns
         cols += '<th scrope="row">' + counter + '</th>';
-        cols += '<td><input class="form-control rounded-0" type="text" name="firstname" placeholder="Name"></td>';
+        cols += '<td><input class="form-control rounded-0" type="text" name="firstname" placeholder="Account Name"></td>';
         cols += '<td><input class="form-control rounded-0" type="number" name="lastname" placeholder="Amount"></td>';
         cols += '<td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>';
 
