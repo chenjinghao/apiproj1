@@ -21,7 +21,8 @@ app.use(
 
 // req.isAuthenticated is provided from the auth router
 app.get('/', (request, response) => {
-  response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
+  response.redirect('/login');
+  //response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 });
 
 app.get('/profile', requiresAuth(), (request, response) => {
