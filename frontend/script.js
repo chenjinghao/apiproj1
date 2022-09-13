@@ -33,3 +33,5 @@ $(function () {
         counter -= 1
     });
 });
+
+//monthly contribution pie chart
