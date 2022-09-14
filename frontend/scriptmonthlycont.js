@@ -13,6 +13,7 @@ val2.addEventListener("input", sum);
 val3.addEventListener("input", sum);
 val4.addEventListener("input", sum);
 
+//Add Category items
 function sum() {
 var myIncome = parseFloat(val0.value) || 0;
 var one = parseFloat(val1.value) || 0;
@@ -24,11 +25,11 @@ var balance = myIncome-(one+two+three+four) ||0;
 
 others.innerHTML = "$ "+balance;
 
-prcnt1.innerHTML = (one/myIncome).toFixed(2);
-prcnt2.innerHTML = (two/myIncome).toFixed(2);
-prcnt3.innerHTML = (three/myIncome).toFixed(2);
-prcnt4.innerHTML = (four/myIncome).toFixed(2);
-prcnt5.innerHTML = (balance/myIncome).toFixed(2);
+prcnt1.innerHTML = ((one/myIncome)*100).toFixed(2);
+prcnt2.innerHTML = ((two/myIncome)*100).toFixed(2);
+prcnt3.innerHTML = ((three/myIncome)*100).toFixed(2);
+prcnt4.innerHTML = ((four/myIncome)*100).toFixed(2);
+prcnt5.innerHTML = ((balance/myIncome)*100).toFixed(2);
 
 }
 
