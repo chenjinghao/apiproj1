@@ -53,16 +53,17 @@
                 <div class="col-4">
                     <nav class="nav flex-column">
                         <p><b><u>Saving Goals</u></b></p>
-                        <a class="nav-link" href="#">House</a>
-                        <a class="nav-link" href="#">Special Event</a>
-                        <a class="nav-link" href="#">By Age</a>
+                        <a class="nav-link" href="#">House ${x}</a>
+                        <!--adding warning only display when there is a short fall-->
+                        <p class="text-danger">${x} short for Down-Payment*</p>
+
                         <br>
                         <p><b><u>Edit</u></b></p>
                         <a class="nav-link" href="#">Asset Balance</a>
                         <a class="nav-link" href="#">Monthly Income</a>
                     </nav>
                 </div>
-                <!--right side bar chart & progress bar-->
+                <!--right side bar chart & progress bar & advises-->
                 <div class="col-8">
                     <!--progress bar-->
                     <div class="row align-items-center">
@@ -78,6 +79,48 @@
                         <div class="col-md-auto">
                             <span style='font-size:30px;'>&#127942;</span>
                         </div>
+                        <div class="col">
+                            <p><b style="color:red; font-size:larger;">{Date}</b></p>
+                        </div>
+                    </div> 
+                    <!--amount & time to reach your goal-->
+                    <div class="row text-center">
+                        <p>Your current saving for this goal is <b style="color:green; font-size: larger;">${}</b>.</p>
+                        <p>Your monthly contribution is <b style="color:green; font-size: larger;">${}</b>.</p>
+                        <p>At this rate, you will be reach your goal in <b style="color:green; font-size: larger;">{x}</b> months</p>
+                    </div>
+                    <!--What if section-->
+                    <div class="row">
+                        <div class="col-3">
+                            <span class="badge text-bg-danger fs-6">What if?</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row text-start">
+                        <div class="col-md-auto">
+                            <p class="fs-5">You</p>
+                        </div>
+                        <!--drop down form: increase or decrease-->
+                        <div class="col-md-auto">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option selected>increase or decrease</option>
+                                <option value="1">Increase</option>
+                                <option value="2">Decrease</option>
+                            </select>
+                        </div>
+                        <div class="col-md-auto text-start">
+                            <p class="fs-5">down-payment by </p> 
+                        </div>
+                        <div class="col-md-auto">
+                            <div class="input-group input-group-sm mb-3">
+                                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--what if result-->
+                    <div class="row">
+                        <p class="fs-5">You will be reach your goal in {x} month {early/late}</p>
                     </div>
                     <!--pie chart-->
                     <div class="row align-itms-center">
