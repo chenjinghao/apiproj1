@@ -36,7 +36,7 @@ $(function () {
         newRow.append(cols);
 
         // Insert the row inside a table
-        $("table").append(newRow);
+        $(".table").append(newRow);
 
         // Increase counter after each row insertion
         counter++;
