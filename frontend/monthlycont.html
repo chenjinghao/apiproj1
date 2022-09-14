@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Contributions</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="stylesmonthlycont.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <body class="bg-light">
+        <div class="container">
+            <div class="py-5 text-center">
+                <img class="d-block mx-auto mb-4" src="https://cdn-icons-png.flaticon.com/512/901/901455.png" alt=""
+                    width="72" height="72">
+                <h2>Monthly Contribution</h2>
+                <p class="lead">Income Bifurcation</p>
+            </div>
+
+            <div class="container py-1">
+                <div class="row">
+                    <div class="col-lg-7 mx-auto">
+
+                        <form id="myForm">
+
+                            <div class="form-group row">
+                                <label for="income" class="col-sm-2 col-form-label">Income</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="val0" min="1" placeholder="$">
+                                </div>
+                            </div>
+
+                            <!--  Bootstrap table-->
+                            <div class="table-responsive">
+                                <table class="table text-center">
+                                    <thead>
+                                        <tr class=>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">%</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td scope="row">Savings</td>
+                                            <td id="prcnt1"></td>
+                                            <td><input type="number" class="form-control" placeholder="$" default="1"
+                                                    min="1" max="100" id="val1"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td scope="row">Investment</td>
+                                            <td id="prcnt2"></td>
+                                            <td><input type="number" class="form-control" placeholder="$" min="1"
+                                                    max="100" id="val2"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td scope="row">Housing</td>
+                                            <td id="prcnt3"></td>
+                                            <td><input type="number" class="form-control" placeholder="$" min="1"
+                                                    max="100" id="val3"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td scope="row">Insurance</td>
+                                            <td id="prcnt4"></td>
+                                            <td><input type="number" class="form-control" placeholder="$" min="1"
+                                                    max="100" id="val4"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td scope="row">Others</td>
+                                            <td id="prcnt5"></label></td>
+                                            <td><label for="input" id="others" placeholder="%"></label></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </form>
+
+
+                        <!-- Buttons-->
+                        <div class="d-flex justify-content-around">
+                            <input class="btn btn-secondary w-25" type="button" onclick="myFunction()"
+                                value="Reset form">
+                            <button type="button" class="btn btn-primary w-25">Submit</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <script src="scriptmonthlycont.js"></script>
+    </body>
+
+</html>

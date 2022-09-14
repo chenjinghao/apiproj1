@@ -3,7 +3,7 @@
 $(function () {
 
     // Start counting from the third row
-    var counter = 3;
+    var counter = 2;
 
     $("#insertRow").on("click", function (event) {
         event.preventDefault();
