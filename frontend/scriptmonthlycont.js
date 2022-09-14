@@ -13,6 +13,7 @@ val2.addEventListener("input", sum);
 val3.addEventListener("input", sum);
 val4.addEventListener("input", sum);
 
+//Add Category items
 function sum() {
 var myIncome = parseFloat(val0.value) || 0;
 var one = parseFloat(val1.value) || 0;
