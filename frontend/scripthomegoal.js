@@ -3,7 +3,7 @@
 function renderBTO(e){    
 
     var text = "BTO";
-    var text = '<iframe width="1000" height="400" src="https://www.srx.com.sg/hdb/bto" title="BTO Indicative Price"></iframe>';
+    var text = '<iframe width="1000" height="400" src="https://www.srx.com.sg/hdb/bto#bto-forecast" title="BTO Indicative Price"></iframe>';
     document.querySelector(".pricingpanel").innerHTML = text;
     
   }
