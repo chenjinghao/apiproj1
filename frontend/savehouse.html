@@ -44,12 +44,54 @@
         <div class="col-lg-7 mx-auto">
           <div class="form-group">
             <form style="text-align: center">
-              <label for="Amt">Amount:</label>
-              <input type="text" id="Amt" name="Amt" placeholder="Amount" />
+              
+              <div class="form-group row">
+                <label for="income" class="col-sm-2 col-form-label">Amount:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="total" min="1" placeholder="$">
+                </div>
+              </div>
+              <label for="Date1">Date to Purchase:</label>
+              <input type="Date" id="Date1" name="Date1" placeholder="Date" />
               <br />
-              <label for="Date">Date to collect keys:</label>
-              <input type="Date" id="Date" name="Date" placeholder="Date" />
+              <label for="Date2">Date to Collect Keys:</label>
+              <input type="Date" id="Date2" name="Date2" placeholder="Date" />
               <br />
+
+              
+
+              <!--  Bootstrap table-->
+              <div class="table-responsive">
+                <table class="table text-center">
+                    <tbody>
+                        <tr>
+                        <td scope="row">Down Payment Required</td>
+                        <td><label for="input" id="dprequire"></label></td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">Funds available for down payment</td>
+                            <td><label for="input" id="dpfunds"></label></td>
+                        </tr>
+
+                        <tr> 
+                            <td scope="row">Are you ready for down payment?</td>
+                            <td><label></label></td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">Months to achieve goal</td>
+                            <td><label></label></td>
+                        </tr>
+
+                        <tr>
+                            <td scope="row">Monthly contribution required to achieve goal</td>
+                            <td><label></label></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
               <button type="submit" class="btn btn-primary w-25">Save</button>
             </form>
           </div>
