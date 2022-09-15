@@ -44,7 +44,7 @@ app.get('/frontend/*', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
-app.get('/addaccount.html', requiresAuth(), (req, res) => {
+app.get('/frontend/addaccount.html', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
