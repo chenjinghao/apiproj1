@@ -1,15 +1,15 @@
 //Buttons
 function profileButton() {
-    location.href = "/frontend/addaccount.html"
+    location.href = "/addaccount"
 }
 function contributionButton() {
-    location.href = "/frontend/monthlycont.html"
+    location.href = "/monthlycont"
 }
 function dashboardButton() {
-    location.href = "/frontend/Profile.html"
+    location.href = "/Profile"
 }
 
 //Redirect click on icon to welcome page
 function homeIconClick() {
-    location.href = "/frontend/welcome.html"
+    location.href = "/welcome"
 }
