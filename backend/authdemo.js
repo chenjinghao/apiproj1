@@ -15,7 +15,7 @@ app.use('/frontend/js',express.static("frontend/js"))
 require('dotenv').config();
 
 const { auth, requiresAuth } = require('express-openid-connect');
-const { nextTick } = require('process');
+//const { nextTick } = require('process');
 app.use(
   auth({
     authRequired: false,
@@ -39,7 +39,9 @@ app.get('/', requiresAuth(), (req, res) => {
   //response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 );
 
-app.all('*', requireAuthentication);
+app.get('/frontend/*', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
 
 app.get('/addaccount.html', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
