@@ -54,7 +54,7 @@ total.addEventListener("input", goalamt);
 addEventListener("load", totalfunds);
 addEventListener("input", check);
 addEventListener("input", diffdate);
-val4.addEventListener("input", sum);
+addEventListener("input", monthcont);
 
 //Add Category items  
 function goalamt() {
@@ -74,12 +74,24 @@ function check() {
     ready.innerHTML = "No";
   }
 }
-function diffdate() {
-
+function diffdate() { 
   var t1 = new Date(document.getElementById('date1').value);
   var t2 = new Date(document.getElementById('date2').value);
   var diffdays = (t2 - t1)/(24*3600*1000);
-  var diffmth = diffdays / 30;
-  months.innerHTML = diffmth.toFixed(1) + " Months";
-
+  diffmth = diffdays / 30;
+    if (funds < downpayment) {
+      months.innerHTML = diffmth.toFixed(0) + " Months";
+    }
+    else {
+      months.innerHTML = "You have achieve your goal!";
+    }
+}
+function monthcont() {
+  if (funds < downpayment) {
+  var addfunds = ((downpayment - funds)/diffmth)
+  reqcont.innerHTML = "$ " + addfunds.toFixed(2)
+  }
+  else {
+    reqcont.innerHTML = "You have achieve your goal!"
+  }
 }
