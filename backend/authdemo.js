@@ -40,7 +40,7 @@ app.get('/', requiresAuth(), (req, res) => {
 );
 
 //Nithin's testing
-app.get('https://nus-money.herokuapp.com/frontend/*', requiresAuth(), (req, res) => {
+app.get('https://nus-money.herokuapp.com/*', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
