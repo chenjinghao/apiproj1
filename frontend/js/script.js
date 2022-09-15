@@ -36,7 +36,7 @@ $(function () {
 
 //Buttons
 function profileButton() {
-    location.href = "/addaccount"
+    location.href = "/frontend/addaccount.html"
 }
 function contributionButton() {
     location.href = "/frontend/monthlycont.html"
