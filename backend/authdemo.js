@@ -30,7 +30,7 @@ app.use(
 // req.isAuthenticated is provided from the auth router
 app.get('/', requiresAuth(), (req, res) => {
 
-  res.redirect('/frontend/welcome');
+  res.redirect('/welcome');
   
   // res.sendFile(dirPath);
   // res.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
