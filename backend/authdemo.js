@@ -28,7 +28,7 @@ app.use(
 );
 
 // req.isAuthenticated is provided from the auth router
-app.get('/', requiresAuth(), (req, res) => {
+app.get('/', (req, res) => {
 
   res.redirect('/welcome');
   
@@ -38,7 +38,13 @@ app.get('/', requiresAuth(), (req, res) => {
 );
 
 app.get('/welcome', requiresAuth(), (req, res) => {
-  var dirPath = path.join(__dirname,'../', '/frontend/welcome.html');
+  const dirPath = path.join(__dirname,'../', '/frontend/welcome.html');
+    res.sendFile(dirPath);
+}
+);
+
+app.get('/addaccount', requiresAuth(), (req, res) => {
+  const dirPath = path.join(__dirname,'../', '/frontend/addaccount.html');
     res.sendFile(dirPath);
 }
 );
@@ -47,9 +53,6 @@ app.get('/*', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
-app.get('/frontend/addaccount.html', requiresAuth(), (req, res) => {
-  res.send(JSON.stringify(req.oidc.user));
-});
 
 app.get('/profile', requiresAuth(), (req, res) => {
     res.send(JSON.stringify(req.oidc.user));
