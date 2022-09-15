@@ -9,8 +9,8 @@ const path = require('path');
 
 
 // use the express-static middleware
-app.use(express.static("frontend"))
-app.use(express.static("frontend/js"))
+app.use('/frontend',express.static("frontend"))
+app.use('/frontend/js',express.static("frontend/js"))
 
 require('dotenv').config();
 
@@ -31,7 +31,7 @@ app.use(
 // req.isAuthenticated is provided from the auth router
 app.get('/', requiresAuth(), (req, res) => {
 
-  res.redirect('/welcome.html');
+  res.redirect('/frontend/welcome.html');
 }
   //response.send('<a href="/welcome">Login</a>')
   

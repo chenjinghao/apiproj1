@@ -36,16 +36,16 @@ $(function () {
 
 //Buttons
 function profileButton() {
-    location.href = "/addaccount.html"
+    location.href = "/frontend/addaccount.html"
 }
 function contributionButton() {
-    location.href = "/monthlycont.html"
+    location.href = "/frontend/monthlycont.html"
 }
 function dashboardButton() {
-    location.href = "/profile.html"
+    location.href = "/frontend/profile.html"
 }
 
 //Redirect click on icon to welcome page
 function homeIconClick() {
-    location.href = "/welcome.html"
+    location.href = "/frontend/welcome.html"
 }
