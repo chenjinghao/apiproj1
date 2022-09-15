@@ -4,8 +4,7 @@
   "description": "My first backend code.",
   "main": "./backend/authdemo.js",
   "scripts": {
-    "start": "node ./backend/authdemo.js, node ./frontend/js/script.js"
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./frontend/js/script.js"
   },
   "author": "Beatrice",
   "license": "ISC",
