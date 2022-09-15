@@ -39,22 +39,27 @@ app.get('/', requiresAuth(), (req, res) => {
   //response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 );
 
-app.get('/frontend/*', requiresAuth(), (req, res) => {
+//Nithin's testing
+app.get('https://nus-money.herokuapp.com/frontend/*', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
-app.get('/addaccount.html', requiresAuth(), (req, res) => {
-  res.send(JSON.stringify(req.oidc.user));
-});
+// app.get('/frontend/*', requiresAuth(), (req, res) => {
+//   res.send(JSON.stringify(req.oidc.user));
+// });
 
-app.get('/profile', requiresAuth(), (req, res) => {
-    res.send(JSON.stringify(req.oidc.user));
-});
+// app.get('/addaccount.html', requiresAuth(), (req, res) => {
+//   res.send(JSON.stringify(req.oidc.user));
+// });
 
-app.get('/user/by-uid', requiresAuth(), (req, res) => {
-    let user = data.get_user_by_user_id(req.query.user_id);
-    res.status(200).send(user);
-  });
+// app.get('/profile', requiresAuth(), (req, res) => {
+//     res.send(JSON.stringify(req.oidc.user));
+// });
+
+// app.get('/user/by-uid', requiresAuth(), (req, res) => {
+//     let user = data.get_user_by_user_id(req.query.user_id);
+//     res.status(200).send(user);
+//   });
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
