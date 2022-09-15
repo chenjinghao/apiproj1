@@ -40,7 +40,7 @@ app.get('/', requiresAuth(), (req, res) => {
 
 
 
-app.get('/frontend/*', requiresAuth(), (req, res) => {
+app.get('/*', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
