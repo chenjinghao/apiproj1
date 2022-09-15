@@ -62,11 +62,11 @@ app.get('/savehouse', requiresAuth(), (req, res) => {
   res.sendFile(dirPath+'savehouse.html');
 });
 
-// app.get('/user/by-uid', requiresAuth(), (req, res) => {
-//   let user = data.get_user_by_user_id(req.query.user_id);
-//   res.send(JSON.stringify(req.oidc.user));
-//   res.status(200).send(user);
-// });
+app.get('/user/by-uid', requiresAuth(), (req, res) => {
+  let user = data.get_user_by_user_id(req.query.user_id);
+  res.send(JSON.stringify(req.oidc.user));
+  res.status(200).send(user);
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
