@@ -6,10 +6,12 @@ const data = require("./data");
 const app = express();
 const fs = require('fs');
 const path = require('path');
+const dirPath = path.join(__dirname, '../', '/frontend/');
 
 // use the express-static middleware
- //app.use('/frontend',express.static("frontend"))
- app.use('/frontend/js',express.static("frontend/js"))
+app.use('/frontend/assets', express.static("frontend/assets"))
+app.use('/frontend/css', express.static("frontend/css"))
+app.use('/frontend/js', express.static("frontend/js"))
 
 require('dotenv').config();
 
@@ -31,47 +33,42 @@ app.use(
 app.get('/', (req, res) => {
 
   res.redirect('/welcome');
-  
+
   // res.sendFile(dirPath);
   // res.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 }
 );
 
 app.get('/welcome', requiresAuth(), (req, res) => {
-  const dirPath = path.join(__dirname,'../', '/frontend/welcome.html');
-    res.sendFile(dirPath);
+  res.sendFile(dirPath+'welcome.html');
 }
 );
 
 app.get('/addaccount', requiresAuth(), (req, res) => {
-  const dirPath = path.join(__dirname,'../', '/frontend/addaccount.html');
-    res.sendFile(dirPath);
+  res.sendFile(dirPath+'addaccount.html');
 }
 );
 
 app.get('/monthlycont', requiresAuth(), (req, res) => {
-  const dirPath = path.join(__dirname,'../', '/frontend/monthlycont.html');
-    res.sendFile(dirPath);
+  res.sendFile(dirPath+'monthlycont.html');
 }
 );
 
 app.get('/profile', requiresAuth(), (req, res) => {
-  const dirPath = path.join(__dirname,'../', '/frontend/Profile.html');
-  res.sendFile(dirPath);
+  res.sendFile(dirPath+'profile.html');
 });
 
 app.get('/savehouse', requiresAuth(), (req, res) => {
-  const dirPath = path.join(__dirname,'../', '/frontend/savehouse.html');
-  res.sendFile(dirPath);
+  res.sendFile(dirPath+'savehouse.html');
 });
 
-app.get('/user/by-uid', requiresAuth(), (req, res) => {
-    let user = data.get_user_by_user_id(req.query.user_id);
-    res.send(JSON.stringify(req.oidc.user));
-    res.status(200).send(user);
-  });
+// app.get('/user/by-uid', requiresAuth(), (req, res) => {
+//   let user = data.get_user_by_user_id(req.query.user_id);
+//   res.send(JSON.stringify(req.oidc.user));
+//   res.status(200).send(user);
+// });
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+  console.log(`Listening on port ${port}`);
 });
