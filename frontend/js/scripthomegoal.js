@@ -45,3 +45,34 @@ function renderCondo(e){
 BTO.addEventListener('click',renderBTO);
 HDB.addEventListener('click',renderHDB1);
 Condo.addEventListener('click',renderCondo);
+
+//calculate Monthly Contribution
+
+var total = document.getElementById('total');
+var val1 = document.getElementById('val1');
+var val2 = document.getElementById('val2');
+var val3 = document.getElementById('val3');
+var val4 = document.getElementById('val4');
+
+
+total.addEventListener("input", goalamt);
+val1.addEventListener("input", totalfunds);
+val2.addEventListener("input", check);
+val3.addEventListener("input", sum);
+val4.addEventListener("input", sum);
+
+//Add Category items  
+  function goalamt() {
+    var myIncome = parseFloat(total.value) || 0;
+    var downpayment = (myIncome*0.2) ||0;
+    dprequire.innerHTML = "$ "+downpayment;
+  }
+  function totalfunds() {
+    var funds = 100000 //taken from database
+    dpfunds.innerHTML = "$ "+funds;
+  }
+  // function check() {
+   //   if (goalamt =< totalfunds) then ready.innerHTML = "Yes"
+   // } else {
+   //   if (goalamt > totalfunds) then ready.innerHTML = "No"
+   // }
