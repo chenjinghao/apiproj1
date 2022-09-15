@@ -49,10 +49,6 @@ app.get('/addaccount', requiresAuth(), (req, res) => {
 }
 );
 
-app.get('/*', requiresAuth(), (req, res) => {
-  res.send(JSON.stringify(req.oidc.user));
-});
-
 
 app.get('/profile', requiresAuth(), (req, res) => {
     res.send(JSON.stringify(req.oidc.user));
