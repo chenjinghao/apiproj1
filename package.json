@@ -2,9 +2,9 @@
   "name": "backend",
   "version": "0.0.0",
   "description": "My first backend code.",
-  "main": "main.js",
+  "main": "./backend/authdemo.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./frontend/js/script.js"
   },
   "author": "Beatrice",
   "license": "ISC",

@@ -1,172 +1,135 @@
 <!doctype html>
 <html lang="en">
 <html>
-    <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Group Project for Developers Toolkit Part 2: Middleware to Backend">
     <meta name="author" content="Nicole, Beatrice, Jeremy, Maggie, Justin, Nithin, Adam">
-    <title>NUS Money by Group 9C</title>
+    <title>Dashboard</title>
 
     <!--favicon-->
     <link href="/frontend/assets/favicon_io/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
 
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <!-- Custom styles for this template -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet">
+    <link href="/frontend/css/styles.css" rel="stylesheet">
+
     <!--pie chart-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            margin-top: 1%;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
-    </head>
-    <body>
-        <div class="container">
-            <!--Logo-->
-            <div class="row">
-                <div class="col-sm">
-                    <img class="d-block mx-auto mb-4" src="https://www.nus.edu.sg/images/default-source/base/logo.png" alt="" width="" height="80">
-                </div>
+</head>
+
+<body class="bg-light">
+
+    <!-- Navbar -->
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+        <h5 class="my-0 mr-md-auto font-weight-normal" onclick=homeIconClick()>
+            <img class="mb-2" src="/frontend/assets/NUS_MONEY-icon.png" alt="" width="24" height="24"> NUS Money
+        </h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="#">Features</a>
+            <a class="p-2 text-dark" href="#">Enterprise</a>
+            <a class="p-2 text-dark" href="#">Support</a>
+            <a class="p-2 text-dark" href="#">Pricing</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="#">Log out</a>
+    </div>
+
+    <!---->
+    <div class="container">
+        <div class="row">
+            <!--left side menu-->
+            <div class="col-4">
+                <nav class="nav flex-column">
+                    <p><b><u>Saving Goals</u></b></p>
+                    <a class="nav-link" href="#">House ${x}</a>
+                    <!--adding warning only display when there is a short fall-->
+                    <p class="text-danger">${x} short for Down-Payment*</p>
+
+                    <br>
+                    <p><b><u>Edit</u></b></p>
+                    <a class="nav-link" href="#">Asset Balance</a>
+                    <a class="nav-link" href="#">Monthly Income</a>
+                </nav>
             </div>
-            <!--welcome user & sign out-->
-            <div class="row">
-                <div class="col-md-auto">
-                    <p>Welcome, user</p>
+            <!--right side bar chart & progress bar & advises-->
+            <div class="col-8">
+                <!--progress bar-->
+                <div class="row align-items-center">
+                    <div class="col-md-auto">
+                        <span style='font-size:30px;'>&#127939;</span>
+                    </div>
+                    <div class="col-8">
+                        <div class="progress" weight="30px">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-auto">
+                        <span style='font-size:30px;'>&#127942;</span>
+                    </div>
+                    <div class="col">
+                        <p><b style="color:red; font-size:larger;">{Date}</b></p>
+                    </div>
                 </div>
-                <div class="col"></div>
-                <div class="col-md-auto">
-                    <p>Sign Out</p>
+                <!--amount & time to reach your goal-->
+                <div class="row text-center">
+                    <p>Your current saving for this goal is <b style="color:green; font-size: larger;">${}</b>.</p>
+                    <p>Your monthly contribution is <b style="color:green; font-size: larger;">${}</b>.</p>
+                    <p>At this rate, you will be reach your goal in <b style="color:green; font-size: larger;">{x}</b>
+                        months</p>
+                </div>
+                <!--What if section-->
+                <div class="row">
+                    <div class="col-3">
+                        <span class="badge text-bg-danger fs-6">What if?</span>
+                    </div>
+                </div>
+                <br>
+                <div class="row text-start">
+                    <div class="col-md-auto">
+                        <p class="fs-5">You</p>
+                    </div>
+                    <!--drop down form: increase or decrease-->
+                    <div class="col-md-auto">
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option selected>increase or decrease</option>
+                            <option value="1">Increase</option>
+                            <option value="2">Decrease</option>
+                        </select>
+                    </div>
+                    <div class="col-md-auto text-start">
+                        <p class="fs-5">down-payment by </p>
+                    </div>
+                    <div class="col-md-auto">
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="text" class="form-control"
+                                aria-label="Dollar amount (with dot and two decimal places)">
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </div>
+                </div>
+                <!--what if result-->
+                <div class="row">
+                    <p class="fs-5">You will be reach your goal in {x} month {early/late}</p>
+                </div>
+                <!--pie chart-->
+                <div class="row align-itms-center">
+                    <div class="col">
+                        <div>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!---->
-        <div class="container">
-            <div class="row">
-                <!--left side menu-->
-                <div class="col-4">
-                    <nav class="nav flex-column">
-                        <p><b><u>Saving Goals</u></b></p>
-                        <a class="nav-link" href="#">House ${x}</a>
-                        <!--adding warning only display when there is a short fall-->
-                        <p class="text-danger">${x} short for Down-Payment*</p>
+    </div>
+    <script src="/frontend/js/doughnutChart.js"></script>
+</body>
 
-                        <br>
-                        <p><b><u>Edit</u></b></p>
-                        <a class="nav-link" href="#">Asset Balance</a>
-                        <a class="nav-link" href="#">Monthly Income</a>
-                    </nav>
-                </div>
-                <!--right side bar chart & progress bar & advises-->
-                <div class="col-8">
-                    <!--progress bar-->
-                    <div class="row align-items-center">
-                        <div class="col-md-auto">
-                            <span style='font-size:30px;'>&#127939;</span>
-                        </div>
-                        <div class="col-8">
-                            <div class="progress" weight="30px">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75"
-                                    aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
-                            </div>
-                        </div>
-                        <div class="col-md-auto">
-                            <span style='font-size:30px;'>&#127942;</span>
-                        </div>
-                        <div class="col">
-                            <p><b style="color:red; font-size:larger;">{Date}</b></p>
-                        </div>
-                    </div> 
-                    <!--amount & time to reach your goal-->
-                    <div class="row text-center">
-                        <p>Your current saving for this goal is <b style="color:green; font-size: larger;">${}</b>.</p>
-                        <p>Your monthly contribution is <b style="color:green; font-size: larger;">${}</b>.</p>
-                        <p>At this rate, you will be reach your goal in <b style="color:green; font-size: larger;">{x}</b> months</p>
-                    </div>
-                    <!--What if section-->
-                    <div class="row">
-                        <div class="col-3">
-                            <span class="badge text-bg-danger fs-6">What if?</span>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row text-start">
-                        <div class="col-md-auto">
-                            <p class="fs-5">You</p>
-                        </div>
-                        <!--drop down form: increase or decrease-->
-                        <div class="col-md-auto">
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>increase or decrease</option>
-                                <option value="1">Increase</option>
-                                <option value="2">Decrease</option>
-                            </select>
-                        </div>
-                        <div class="col-md-auto text-start">
-                            <p class="fs-5">down-payment by </p> 
-                        </div>
-                        <div class="col-md-auto">
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-                                <span class="input-group-text">%</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!--what if result-->
-                    <div class="row">
-                        <p class="fs-5">You will be reach your goal in {x} month {early/late}</p>
-                    </div>
-                    <!--pie chart-->
-                    <div class="row align-itms-center">
-                        <div class="col">
-                            <div>
-                                <canvas id="myChart"></canvas>
-                            </div>
-                            <script>
-                                const data = {
-                                        labels: [
-                                            'Saving',
-                                            'Saving for goal',
-                                            'Investment',
-                                            'Living expenses',
-                                            'others'
-                                        ],
-                                        datasets: [{
-                                            label: 'My First Dataset',
-                                            data: [100, 50, 100, 50, 60],
-                                            backgroundColor: [
-                                                'rgb(255, 99, 132)',
-                                                'rgb(54, 162, 235)',
-                                                'rgb(255, 205, 86)',
-                                                'rgb(84, 194, 54)',
-                                                'rgb(194, 54, 182)'
-                                            ],
-                                            hoverOffset: 5
-                                        }]
-                                    };
-
-                                const config = {
-                                    type: 'pie',
-                                    data: data,
-                                    options: {}
-                                };
-                            </script>
-                            <script>
-                                const myChart = new Chart(
-                                    document.getElementById('myChart'),
-                                    config
-                                );
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>    
-    </body>
 </html>

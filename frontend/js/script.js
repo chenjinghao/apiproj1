@@ -34,4 +34,18 @@ $(function () {
     });
 });
 
-//monthly contribution pie chart
+//Buttons
+function profileButton() {
+    location.href = "/addaccount"
+}
+function contributionButton() {
+    location.href = "/frontend/monthlycont.html"
+}
+function dashboardButton() {
+    location.href = "/frontend/profile.html"
+}
+
+//Redirect click on icon to welcome page
+function homeIconClick() {
+    location.href = "/frontend/welcome.html"
+}
