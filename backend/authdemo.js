@@ -6,11 +6,10 @@ const data = require("./data");
 const app = express();
 const fs = require('fs');
 const path = require('path');
-const dirPath = __dirname+'/../frontend/welcome.html'
 
 // use the express-static middleware
-app.use('/frontend',express.static("frontend"))
-app.use('/frontend/js',express.static("frontend/js"))
+// app.use('/frontend',express.static("frontend"))
+// app.use('/frontend/js',express.static("frontend/js"))
 
 require('dotenv').config();
 
