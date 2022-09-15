@@ -43,8 +43,3 @@ function myFunction() {
     prcnt4.innerHTML = "";
     prcnt5.innerHTML = "";
 }
-
-//Redirect click on icon to welcome page
-function homeIconClick() {
-    location.href="/frontend/welcome.html"
-}

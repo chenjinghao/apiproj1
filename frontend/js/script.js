@@ -1,12 +1,16 @@
 //Buttons
-function profileButton() {
+function addaccountButton() {
     location.href = "/addaccount"
 }
-function contributionButton() {
+function monthlycontButton() {
     location.href = "/monthlycont"
 }
 function dashboardButton() {
-    location.href = "/Profile"
+    location.href = "/dashboard"
+}
+
+function savehouseButton() {
+    location.href = "/savehouse"
 }
 
 //Redirect click on icon to welcome page

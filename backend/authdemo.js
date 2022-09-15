@@ -54,8 +54,8 @@ app.get('/monthlycont', requiresAuth(), (req, res) => {
 }
 );
 
-app.get('/profile', requiresAuth(), (req, res) => {
-  res.sendFile(dirPath+'profile.html');
+app.get('/dashboard', requiresAuth(), (req, res) => {
+  res.sendFile(dirPath+'dashboard.html');
 });
 
 app.get('/savehouse', requiresAuth(), (req, res) => {
