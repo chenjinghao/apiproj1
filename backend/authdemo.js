@@ -39,9 +39,7 @@ app.get('/', requiresAuth(), (req, res) => {
   //response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 );
 
-app.get('/frontend/*', requiresAuth(), (req, res) => {
-  res.send(JSON.stringify(req.oidc.user));
-});
+app.all('*', requireAuthentication);
 
 app.get('/addaccount.html', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
