@@ -15,21 +15,23 @@ val4.addEventListener("input", sum);
 
 //Add Category items
 function sum() {
-var myIncome = parseFloat(val0.value) || 0;
-var one = parseFloat(val1.value) || 0;
-var two = parseFloat(val2.value) || 0;
-var three = parseFloat(val3.value) || 0;
-var four = parseFloat(val4.value) || 0;
+    var myIncome = parseFloat(val0.value) || 0;
+    var one = parseFloat(val1.value) || 0;
+    var two = parseFloat(val2.value) || 0;
+    var three = parseFloat(val3.value) || 0;
+    var four = parseFloat(val4.value) || 0;
 
-var balance = myIncome-(one+two+three+four) ||0;
+    var balance = myIncome - (one + two + three + four) || 0;
 
-others.innerHTML = "$ "+balance;
+    others.innerHTML = "$ " + balance;
 
-prcnt1.innerHTML = ((one/myIncome)*100).toFixed(2);
-prcnt2.innerHTML = ((two/myIncome)*100).toFixed(2);
-prcnt3.innerHTML = ((three/myIncome)*100).toFixed(2);
-prcnt4.innerHTML = ((four/myIncome)*100).toFixed(2);
-prcnt5.innerHTML = ((balance/myIncome)*100).toFixed(2);
+    prcnt1.innerHTML = ((one / myIncome) * 100).toFixed(2);
+    prcnt2.innerHTML = ((two / myIncome) * 100).toFixed(2);
+    prcnt3.innerHTML = ((three / myIncome) * 100).toFixed(2);
+    prcnt4.innerHTML = ((four / myIncome) * 100).toFixed(2);
+    prcnt5.innerHTML = ((balance / myIncome) * 100).toFixed(2);
+
+    return [myIncome, one, two, three, four, balance];
 
 }
 
@@ -42,4 +44,10 @@ function myFunction() {
     prcnt3.innerHTML = "";
     prcnt4.innerHTML = "";
     prcnt5.innerHTML = "";
+}
+
+function updateButton() {
+    var val = sum();
+    var update = [{ "income": val[0], "savings": val[1], "investment": val[2], "housing": val[3], "insurance": val[4], "others": val[5] }]
+    console.log(update);
 }

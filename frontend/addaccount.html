@@ -82,9 +82,9 @@
                                     </select>
                                 </td>
                                 <td><input type="text" class="form-control" placeholder="xxx-xx-xxx"
-                                        aria-label="Account number"></td>
+                                        aria-label="Account number" id="acc1"></td>
                                 <td><input type="number" class="form-control" placeholder="$" aria-label="Balance"
-                                        name="balance"></td>
+                                        name="balance" id="bal1"></td>
                                 <td><a class="btn btn-secondary rounded-0" id ="insertRow" href="#">+</a></td>
                             </tr>
                         </tbody>
@@ -110,7 +110,7 @@
 
                 <div class="d-flex justify-content-around">
                     <button type="button" class="btn btn-outline-primary w-25" onclick=savehouseButton()>Skip</button>
-                    <button type="button" class="btn btn-primary w-25">Update</button>
+                    <button type="button" class="btn btn-primary w-25" onclick=updateButton()>Update</button>
                 </div>
                 <br>
                 <br>
@@ -123,16 +123,16 @@
                         <tbody>
 
                             <tr>
-                                <td scope="row">Total Funds Available: </td>
-                                <td id="val11">$</td>
+                                <td scope="row">Total Funds Available: &nbsp;</td>
+                                <td id="sum1">$</td>
                             </tr>
                             <tr>
-                                <td scope="row">Down-Payment Allocation: </td>
-                                <td id="val2">$</td>
+                                <td scope="row">Down-Payment Allocation: &nbsp;</td>
+                                <td id="sum2">$</td>
                             </tr>
                             <tr>
-                                <td scope="row">Funds available for other use: </td>
-                                <td id="val3">$</td>
+                                <td scope="row">Funds available for other use: &nbsp;</td>
+                                <td id="sum3">$</td>
                             </tr>
                         </tbody>
                     </table>
