@@ -23,7 +23,7 @@
   <!-- Navbar -->
 
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <h5 class="my-0 mr-md-auto font-weight-normal">
+    <h5 class="my-0 mr-md-auto font-weight-normal" onclick=homeIconClick()>
       <img class="mb-2" src="/frontend/assets/NUS_MONEY-icon.png" alt="" width="24" height="24"> NUS Money
     </h5>
     <nav class="my-2 my-md-0 mr-md-3">
@@ -58,9 +58,7 @@
             <li>Savings Profile</li>
             <li>&nbsp;</li>
           </ul>
-          <a href="/frontend/addaccount.html">
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary">Setup</button>
-          </a>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary" onclick="profileButton()">Setup</button>
         </div>
       </div>
       <div class="card mb-4 box-shadow">
@@ -75,9 +73,7 @@
             <li>Monthly contributions</li>
             <li>&nbsp;</li>
           </ul>
-          <a href="/frontend/monthlycont.html">
-            <button type="button" class="btn btn-lg btn-block btn-primary">Update</button>
-          </a>
+            <button type="button" class="btn btn-lg btn-block btn-primary" onclick="contributionButton()">Update</button>
         </div>
       </div>
       <div class="card mb-4 box-shadow">
@@ -92,7 +88,7 @@
             <li>View Dashboard</li>
             <li>&nbsp;</li>
           </ul>
-          <button type="button" class="btn btn-lg btn-block btn-primary">Let's go!</button>
+          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="dashboardButton()">Let's go!</button>
         </div>
       </div>
     </div>
@@ -137,6 +133,7 @@
       </div>
     </footer>
   </div>
+  <script src="script.js"></script>
 </body>
 
 </html>

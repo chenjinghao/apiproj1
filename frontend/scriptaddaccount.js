@@ -48,3 +48,8 @@ $(function () {
         counter -= 1
     });
 });
+
+//Redirect click on icon to welcome page
+function homeIconClick() {
+    location.href="/frontend/welcome.html"
+}
