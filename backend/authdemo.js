@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 
 // use the express-static middleware
-// app.use('/frontend',express.static("frontend"))
+ app.use('/frontend',express.static("frontend"))
  app.use('/frontend/js',express.static("frontend/js"))
 
 require('dotenv').config();
@@ -38,7 +38,7 @@ app.get('/', requiresAuth(), (req, res) => {
 );
 
 app.get('/welcome', requiresAuth(), (req, res) => {
-  var dirPath = path.join(__dirname,'../', '/frontend/welcome.html');
+  const dirPath = path.join(__dirname,'../', '/frontend/welcome.html');
     response.sendFile(dirPath);
 }
 );
