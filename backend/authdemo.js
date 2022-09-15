@@ -9,8 +9,8 @@ const path = require('path');
 
 
 // use the express-static middleware
-app.use(express.static("frontend"))
-app.use(express.static("frontend/js"))
+app.use('/auth',express.static("frontend"))
+app.use('/auth',express.static("frontend/js"))
 
 require('dotenv').config();
 
@@ -31,7 +31,7 @@ app.use(
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
 
-  res.redirect('/welcome.html');
+  res.redirect('/auth/welcome.html');
 }
   //response.send('<a href="/welcome">Login</a>')
   
@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
   //response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 );
 
-app.get('/welcome', requiresAuth(), (req, res) => {
+app.get('/auth', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
