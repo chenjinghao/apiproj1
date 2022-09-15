@@ -3,7 +3,7 @@ const db= require("../db");
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
 
     try {
         let results = await db.all();
