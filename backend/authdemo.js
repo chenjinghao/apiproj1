@@ -6,10 +6,12 @@ const data = require("./data");
 const app = express();
 const fs = require('fs');
 const path = require('path');
-const dirPath = path.join(__dirname,'../', '/frontend/index.html');
+
+
 require('dotenv').config();
 
 const { auth, requiresAuth } = require('express-openid-connect');
+const { nextTick } = require('process');
 app.use(
   auth({
     authRequired: false,
@@ -23,19 +25,33 @@ app.use(
 );
 
 // req.isAuthenticated is provided from the auth router
-app.get('/', (request, response) => {
+app.get('/', (req, res) => {
   
-  response.sendFile(dirPath);
+  res.redirect('/welcome');
+  
+  //response.send('<a href="/welcome">Login</a>')
+  
+  //response.sendFile(dirPath);
   //response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 });
 
-app.get('/profile', requiresAuth(), (request, response) => {
-    response.send(JSON.stringify(request.oidc.user));
+app.get('/welcome', requiresAuth(), (req, res) => {
+  const dirPath = path.join(__dirname,'../', '/frontend/welcome.html');
+    res.sendFile(dirPath);
 });
 
-app.get('/user/by-uid', requiresAuth(), (request, response) => {
-    let user = data.get_user_by_user_id(request.query.user_id);
-    response.status(200).send(user);
+app.get('/addaccount', requiresAuth(), (req, res) => {
+  const dirPath = path.join(__dirname,'../', '/frontend/addaccount.html');
+    res.sendFile(dirPath);
+});
+
+app.get('/profile', requiresAuth(), (req, res) => {
+    res.send(JSON.stringify(req.oidc.user));
+});
+
+app.get('/user/by-uid', requiresAuth(), (req, res) => {
+    let user = data.get_user_by_user_id(req.query.user_id);
+    res.status(200).send(user);
   });
 
 const port = process.env.PORT || 3000;
