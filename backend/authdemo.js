@@ -49,13 +49,25 @@ app.get('/addaccount', requiresAuth(), (req, res) => {
 }
 );
 
+app.get('/monthlycont', requiresAuth(), (req, res) => {
+  const dirPath = path.join(__dirname,'../', '/frontend/monthlycont.html');
+    res.sendFile(dirPath);
+}
+);
 
 app.get('/profile', requiresAuth(), (req, res) => {
-    res.send(JSON.stringify(req.oidc.user));
+  const dirPath = path.join(__dirname,'../', '/frontend/Profile.html');
+  res.sendFile(dirPath);
+});
+
+app.get('/savehouse', requiresAuth(), (req, res) => {
+  const dirPath = path.join(__dirname,'../', '/frontend/savehouse.html');
+  res.sendFile(dirPath);
 });
 
 app.get('/user/by-uid', requiresAuth(), (req, res) => {
     let user = data.get_user_by_user_id(req.query.user_id);
+    res.send(JSON.stringify(req.oidc.user));
     res.status(200).send(user);
   });
 
