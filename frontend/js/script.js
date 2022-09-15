@@ -42,7 +42,7 @@ function contributionButton() {
     location.href = "/frontend/monthlycont.html"
 }
 function dashboardButton() {
-    location.href = "/frontend/profile.html"
+    location.href = "/frontend/Profile.html"
 }
 
 //Redirect click on icon to welcome page
