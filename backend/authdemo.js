@@ -9,7 +9,7 @@ const path = require('path');
 
 // use the express-static middleware
 // app.use('/frontend',express.static("frontend"))
-// app.use('/frontend/js',express.static("frontend/js"))
+ app.use('/frontend/js',express.static("frontend/js"))
 
 require('dotenv').config();
 
@@ -30,14 +30,18 @@ app.use(
 // req.isAuthenticated is provided from the auth router
 app.get('/', requiresAuth(), (req, res) => {
 
-  res.redirect('/frontend/welcome.html');
-  // res.send('<a href="/../frontend/welcome.html">Login</a>')
+  res.redirect('/frontend/welcome');
+  
   // res.sendFile(dirPath);
   // res.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 }
 );
 
-
+app.get('/welcome', requiresAuth(), (req, res) => {
+  var dirPath = path.join(__dirname,'../', '/frontend/welcome.html');
+    response.sendFile(dirPath);
+}
+);
 
 app.get('/*', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
