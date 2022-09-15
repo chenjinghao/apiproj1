@@ -8,6 +8,9 @@ const fs = require('fs');
 const path = require('path');
 
 
+// use the express-static middleware
+app.use(express.static("frontend"))
+
 require('dotenv').config();
 
 const { auth, requiresAuth } = require('express-openid-connect');
