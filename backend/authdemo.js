@@ -6,7 +6,7 @@ const data = require("./data");
 const app = express();
 const fs = require('fs');
 const path = require('path');
-
+const dirPath = __dirname+'/../frontend/welcome.html'
 
 // use the express-static middleware
 app.use('/frontend',express.static("frontend"))
@@ -32,34 +32,30 @@ app.use(
 app.get('/', requiresAuth(), (req, res) => {
 
   res.redirect('/frontend/welcome.html');
+  // res.send('<a href="/../frontend/welcome.html">Login</a>')
+  // res.sendFile(dirPath);
+  // res.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 }
-  //response.send('<a href="/welcome">Login</a>')
-  
-  //response.sendFile(dirPath);
-  //response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 );
 
-//Nithin's testing
-app.get('https://nus-money.herokuapp.com/*', requiresAuth(), (req, res) => {
+
+
+app.get('/frontend/*', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
-// app.get('/frontend/*', requiresAuth(), (req, res) => {
-//   res.send(JSON.stringify(req.oidc.user));
-// });
+app.get('/addaccount.html', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
 
-// app.get('/addaccount.html', requiresAuth(), (req, res) => {
-//   res.send(JSON.stringify(req.oidc.user));
-// });
+app.get('/profile', requiresAuth(), (req, res) => {
+    res.send(JSON.stringify(req.oidc.user));
+});
 
-// app.get('/profile', requiresAuth(), (req, res) => {
-//     res.send(JSON.stringify(req.oidc.user));
-// });
-
-// app.get('/user/by-uid', requiresAuth(), (req, res) => {
-//     let user = data.get_user_by_user_id(req.query.user_id);
-//     res.status(200).send(user);
-//   });
+app.get('/user/by-uid', requiresAuth(), (req, res) => {
+    let user = data.get_user_by_user_id(req.query.user_id);
+    res.status(200).send(user);
+  });
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
