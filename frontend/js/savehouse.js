@@ -40,8 +40,6 @@ function renderCondo(e) {
 }
 
 
-
-
 BTO.addEventListener('click', renderBTO);
 HDB.addEventListener('click', renderHDB1);
 Condo.addEventListener('click', renderCondo);

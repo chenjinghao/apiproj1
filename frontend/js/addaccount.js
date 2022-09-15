@@ -43,13 +43,8 @@ $(function () {
     });
 
     // Remove row when delete btn is clicked
-    $("table").on("click", "#deleteRow", function (event) {
+    $(".table").on("click", "#deleteRow", function (event) {
         $(this).closest("tr").remove();
         counter -= 1
     });
 });
-
-//Redirect click on icon to welcome page
-function homeIconClick() {
-    location.href="/frontend/welcome.html"
-}
