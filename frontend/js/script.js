@@ -17,3 +17,5 @@ function savehouseButton() {
 function homeIconClick() {
     location.href = "/welcome"
 }
+
+
