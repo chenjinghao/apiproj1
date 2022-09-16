@@ -16,6 +16,9 @@
 
   <!-- Custom styles for this template -->
   <link href="/frontend/css/styles.css" rel="stylesheet">
+
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/1.20/auth0-spa-js.production.js"></script>
+
 </head>
 
 <body>
@@ -32,7 +35,7 @@
       <a class="p-2 text-dark" href="#">Support</a>
       <a class="p-2 text-dark" href="#">Pricing</a>
     </nav>
-    <a class="btn btn-outline-primary" href="#">Log out</a>
+    <a class="btn btn-outline-primary" href="https://nus-money.herokuapp.com/logout">Log out</a>
   </div>
 
   <!-- Title -->
@@ -58,7 +61,7 @@
             <li>Savings Profile</li>
             <li>&nbsp;</li>
           </ul>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary" onclick="profileButton()">Setup</button>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary" onclick="addaccountButton()">Setup</button>
         </div>
       </div>
       <div class="card mb-4 box-shadow">
@@ -73,7 +76,7 @@
             <li>Monthly contributions</li>
             <li>&nbsp;</li>
           </ul>
-            <button type="button" class="btn btn-lg btn-block btn-primary" onclick="contributionButton()">Update</button>
+            <button type="button" class="btn btn-lg btn-block btn-primary" onclick="monthlycontButton()">Update</button>
         </div>
       </div>
       <div class="card mb-4 box-shadow">
@@ -135,5 +138,4 @@
   </div>
   <script src="/frontend/js/script.js"></script>
 </body>
-
 </html>

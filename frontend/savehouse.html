@@ -21,6 +21,20 @@
   </head>
 
   <body class="bg-light">
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal" onclick=homeIconClick()>
+        <img class="mb-2" src="/frontend/assets/NUS_MONEY-icon.png" alt="" width="24" height="24"> NUS Money
+      </h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#">Features</a>
+        <a class="p-2 text-dark" href="#">Enterprise</a>
+        <a class="p-2 text-dark" href="#">Support</a>
+        <a class="p-2 text-dark" href="#">Pricing</a>
+      </nav>
+      <a class="btn btn-outline-primary" href="https://nus-money.herokuapp.com/logout">Log out</a>
+    </div>
+
     <div class="container">
       <div class="py-5 text-center">
         <img
@@ -52,10 +66,10 @@
                 </div>
               </div>
               <label for="Date1">Date to Purchase:</label>
-              <input type="Date" id="Date1" name="Date1" placeholder="Date" />
+              <input type="Date" id="date1" name="Date1" placeholder="Date" />
               <br />
               <label for="Date2">Date to Collect Keys:</label>
-              <input type="Date" id="Date2" name="Date2" placeholder="Date" />
+              <input type="Date" id="date2" name="Date2" placeholder="Date" />
               <br />
 
               
@@ -76,17 +90,17 @@
 
                         <tr> 
                             <td scope="row">Are you ready for down payment?</td>
-                            <td><label></label></td>
+                            <td><label for="input" id="ready"></label></td>
                         </tr>
 
                         <tr>
                             <td scope="row">Months to achieve goal</td>
-                            <td><label></label></td>
+                            <td><label for="input" id="months"></label></td>
                         </tr>
 
                         <tr>
                             <td scope="row">Monthly contribution required to achieve goal</td>
-                            <td><label></label></td>
+                            <td><label for="input" id="reqcont"></label></td>
                         </tr>
                         
                     </tbody>
@@ -108,7 +122,8 @@
           
     </div>
 
-<script src="/frontend/js/scripthomegoal.js"></script>
+<script src="/frontend/js/savehouse.js"></script>
+<script src="/frontend/js/script.js"></script>
   </body>
 </html>
 
