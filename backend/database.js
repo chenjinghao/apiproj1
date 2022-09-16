@@ -11,7 +11,8 @@ var properties = {
     port: process.env.DBPORT
 };
 
-mysqlConnection = mysql.createConnection(properties);
+var mysqlConnection = mysql.createConnection(properties);
+
 mysqlConnection.connect((errors) => {
   if (errors) console.log("Error occurred while connecting to MySQL server");
   else console.log("Connected to MySQL successfully!");
