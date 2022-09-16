@@ -9,6 +9,7 @@ router.get("/user/all", (request, response) => {
     mysqlConnection.query("SELECT * FROM users", (errors, results) => {
     if (errors) {
       console.log(errors);
+      console.trace('fatal error: ' + err.message);
       response.status(500).send("Some error occurred at the backend.");
     } else {
       response.status(200).send(results);
