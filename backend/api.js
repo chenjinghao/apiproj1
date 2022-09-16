@@ -5,6 +5,7 @@ const { mysqlConnection } = require("./database");
 let router = express.Router();
 
 //Database Actions
+//Get all users
 router.get("/user/all", (request, response) => {
     mysqlConnection.query("SELECT * FROM users", (errors, results) => {
     if (errors) {
@@ -17,6 +18,7 @@ router.get("/user/all", (request, response) => {
   });
 });
 
+//Get user by GoogleID
 router.get("/user/:userID", (request, response) => {  
   mysqlConnection.query(`SELECT * FROM users where GoogleID = ${request.params.userID}`, (errors, results) => {
     if (errors) {
@@ -28,6 +30,7 @@ router.get("/user/:userID", (request, response) => {
   })
 });
 
+//Get assets by GoogleID
 router.get("/asset/:userID", (request, response) => { 
   mysqlConnection.query(`SELECT * FROM Assets where GoogleID = ${request.params.userID}`, (errors, results) => {
     if (errors) {
@@ -39,7 +42,7 @@ router.get("/asset/:userID", (request, response) => {
   })
 });
 
-
+//Add New User
 router.post("/user/add", (request,response) => {
 
   mysqlConnection.query(`INSERT INTO users (GoogleID, FirstName, LastName, Email)
@@ -53,17 +56,22 @@ router.post("/user/add", (request,response) => {
   })
 });
 
-function create_user(GoogleID, FirstName, LastName, Email) {
-  mysqlConnection.query(`INSERT INTO users (GoogleID, FirstName, LastName, Email)
-  values ('${GoogleID}','${FirstName}', '${LastName}, '${Email}')`, (errors, results) => {
-  if (errors) {
-    console.log(errors);
-  } else {
-     console.log("Created successfully!"); 
-  }
-})
-};
 
+//Add Asset by GoogleID
+router.post("/addasset/:userID", (request,response) => {
+
+  let balance = parseInt(request.body.AccountBalance);
+
+  mysqlConnection.query(`INSERT INTO Assets (GoogleID, AccountName, AccountNumber, AccountBalance)
+  values ('${request.params.userID}','${request.body.AccountName}', '${request.body.AccountNumber}', '${balance}')`, (errors, results) => {
+    if (errors) {
+      console.log(errors);
+      response.status(500).send("Some error occurred at the backend.");
+    } else {
+      response.status(200).send("Created successfully!");
+    }
+  })
+});
 
 //Landing Page
 router.get('/', (req, res) => {
