@@ -1,11 +1,11 @@
 const mysql = require('mysql');
 require('dotenv').config();
-var q = require('q');
-var d = q.defer();
+// var q = require('q');
+// var d = q.defer();
 
 // setup database connection    
 var properties = {
-  // connectionLimit: 10,
+  connectionLimit: 10,
   password: process.env.DBPASSWD,
   user: process.env.DBUSER,
   database: process.env.DBNAME,
@@ -16,13 +16,13 @@ var properties = {
 var mysqlConnection = mysql.createConnection(properties);
 
 mysqlConnection.connect((errors) => {
-  // if (errors) console.log("Error occurred while connecting to MySQL server");
-  // else console.log("Connected to MySQL successfully!");
-  if (errors) {console.log('Not connected '.red, errors.toString().red, ' RETRYING...'.blue);
-  d.reject();}
-  else {console.log('Connected to Mysql. Exporting..'.blue);
-  d.resolve(mysqlConnection);}
-  return d.promise;
+  if (errors) console.log("Error occurred while connecting to MySQL server");
+  else console.log("Connected to MySQL successfully!");
+  // if (errors) {console.log('Not connected '.red, errors.toString().red, ' RETRYING...'.blue);
+  // d.reject();}
+  // else {console.log('Connected to Mysql. Exporting..'.blue);
+  // d.resolve(mysqlConnection);}
+  // return d.promise;
 });
 
 module.exports = { mysqlConnection };
