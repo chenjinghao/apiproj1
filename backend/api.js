@@ -40,7 +40,6 @@ router.get("/asset/:userID", (request, response) => {
 
 
 router.post("/user/add", (request,response) => {
-
   mysqlConnection.query(`INSERT INTO users (GoogleID, FirstName, LastName, Email)
   values ('${request.body.GoogleID}','${request.body.FirstName}', '${request.body.LastName}', '${request.body.Email}')`, (errors, results) => {
     if (errors) {
@@ -51,18 +50,22 @@ router.post("/user/add", (request,response) => {
     }
   })
 });
-
-function create_user(GoogleID, FirstName, LastName, Email) {
-  mysqlConnection.query(`INSERT INTO users (GoogleID, FirstName, LastName, Email)
-  values ('${GoogleID}','${FirstName}', '${LastName}, '${Email}')`, (errors, results) => {
-  if (errors) {
-    console.log(errors);
-  } else {
-     console.log("Created successfully!"); 
-  }
-})
-};
-
+//update goalamt
+router.put("/user/:userID", (request,response) => {
+  mysqlConnection.query(`
+  UPDATE users 
+  SET
+    GoalAmount = ${request.body.GoalAmount}
+  WHERE
+    GoogleID = ${request.params.userID}`),  (errors, results) => {
+      if (errors) {
+        console.log(errors);
+        response.status(500).send("Some error occurred at the backend.");
+      } else {
+        response.status(200).send("GoalAmount Update!");
+      }
+    }
+});
 
 //Landing Page
 router.get('/', (req, res) => {
