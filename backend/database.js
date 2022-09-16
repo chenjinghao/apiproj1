@@ -11,18 +11,10 @@ var properties = {
     port: process.env.DBPORT
 };
 
-const pool = mysql.createPool(properties);
+mysqlConnection = mysql.createConnection(properties);
+mysqlConnection.connect((errors) => {
+  if (errors) console.log("Error occurred while connecting to MySQL server");
+  else console.log("Connected to MySQL successfully!");
+});
 
-let nusmoneydb = {};
-
-nusmoneydb.all = () => {
-    return new Promise((resolve, reject) => {
-        pool.query('SELECT * FROM users', (err, results) => {
-            if (err) {
-                return reject(err);
-            }
-            return resolve(results);
-        });
-    });
-}
-module.exports = nusmoneydb;
+module.exports = { mysqlConnection };
