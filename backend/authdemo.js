@@ -13,6 +13,7 @@ app.use('/frontend/js', express.static("frontend/js"))
 require('dotenv').config();
 
 const { auth, requiresAuth } = require('express-openid-connect');
+const { response } = require('express');
 //const { nextTick } = require('process');
 app.use(
   auth({
@@ -57,9 +58,13 @@ app.get('/savehouse', requiresAuth(), (req, res) => {
 
 app.get('/user', (req, res) => {
   let user = data.get_user_by_user_id(req.query.user_id);
-  res.send(JSON.stringify(req.oidc.user));
-  res.status(200).send(user);
+  const userDetails = JSON.parse(JSON.stringify(req.oidc.user));
+  const userName = userDetails.given_name;
+  res.send(userName);
+  // res.send(JSON.stringify(req.oidc.user));
+  // res.status(200).send(user);
 });
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
