@@ -1,1 +1,1 @@
-web: node ./backend/authdemo.js
+web: node ./backend/main.js
