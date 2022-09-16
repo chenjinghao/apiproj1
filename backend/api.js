@@ -1,29 +1,15 @@
 const express = require("express");
+const nusmoneydb = require("./database");
 
-let router = express.Router();//Router caps R is something within express
-
-
-router.get("/", (req, res) => {
-    console.log("Hello. Request Received");
-    res.send("Hello. Response Sent");
+let router = express.Router();
+router.get("/user/all", (request, response) => {
+  mysqlConnection.query("SELECT * FROM users", (errors, results) => {
+    if (errors) {
+      console.log(errors);
+      response.status(500).send("Some error occurred at the backend.");
+    } else {
+      response.status(200).send(results);
+    }
+  });
 });
-
-//a sum API which takes input from the request query (HTML) and returns sum
-router.get("/sum", (req, res) => {
-    let n1= parseFloat(req.query.number1);
-    let n2= parseFloat(req.query.number2);
-    let sum= n1 + n2;
-    res.send(`Sum: ${sum}`);
-});
-//a multiply API which takes input from the request body and returns sum
-router.post("/multiply", (req, res) => {
-    let n1= parseFloat(req.body.number1);
-    let n2= parseFloat(req.body.number2);
-    let product= n1*n2;
-    res.send(`Product: ${product}`);
-});
-
-router.put("");
-router.delete("");
-
-module.exports = {router} ;
+module.exports = { router };

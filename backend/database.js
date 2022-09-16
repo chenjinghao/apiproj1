@@ -25,5 +25,4 @@ nusmoneydb.all = () => {
         });
     });
 }
-
 module.exports = nusmoneydb;
