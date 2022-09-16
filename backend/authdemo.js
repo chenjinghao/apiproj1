@@ -1,6 +1,3 @@
-// demonstration of using Auth0 to login users before allowing access to endpoints
-// to step through this, see James Quick's video tutorial at https://www.youtube.com/watch?v=QQwo4E_B0y8
-
 const express = require('express');
 const data = require("./data");
 const app = express();
@@ -31,11 +28,7 @@ app.use(
 
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
-
   res.redirect('/welcome');
-
-  // res.sendFile(dirPath);
-  // res.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 }
 );
 
