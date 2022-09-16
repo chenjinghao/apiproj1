@@ -15,13 +15,13 @@ Business Analyst: Maggie
 Coders: Adam, Beatrice, Justin, Nithin
 
 ### Tools for technical development:
-Glitch, VSC, Heroku, Postman, Netlify, Google Cloud Platform, mySQL
+Glitch, VSC, API, Heroku, Postman, Netlify, Google Cloud Platform, mySQL
 
 ### Tools used for Cloud based Collaboration:
 Mural, MS Teams for meetings, Sharepoint, Powerpoint, Miro Kudo Wall, Git, Github
 
-### Method:
-Applied Scrum on Agile Project Management.
+### Methods and Processes
+Applied Scrum on Agile Project Management. Design Thinking
 
 Conduct Planning Meeting, Daily standups, bi-monthly Retrospectives, MVP delivery.
 
@@ -46,3 +46,6 @@ NUS Money Frontend Link: https://nus-money.netlify.app/
 
 ### Story Board: Refer to Powerpoint presentation https://nusu.sharepoint.com/:p:/r/sites/9CCapstoneProject/Shared%20Documents/General/NUS%20Money/Prototype.pptx?d=wbdd246dba4904b808241f2eff659e448&csf=1&web=1&e=280Fqm
 
+### Reference https://en.wikipedia.org/wiki/README
+
+copyrights @NUSAPIdays September 2022
