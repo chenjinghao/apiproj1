@@ -1,21 +1,13 @@
 const express = require('express');
-const data = require("./data");
-const app = express();
-const fs = require('fs');
-const path = require('path');
-const dirPath = path.join(__dirname, '../', '/frontend/');
-
-// use the express-static middleware
-app.use('/frontend/assets', express.static("frontend/assets"))
-app.use('/frontend/css', express.static("frontend/css"))
-app.use('/frontend/js', express.static("frontend/js"))
 
 require('dotenv').config();
 
+let router = express.Router();
+
 const { auth, requiresAuth } = require('express-openid-connect');
 const { response } = require('express');
-//const { nextTick } = require('process');
-app.use(
+const { nextTick } = require('process');
+router.use(
   auth({
     authRequired: false,
     auth0Logout: true,
@@ -28,45 +20,13 @@ app.use(
 );
 
 // req.isAuthenticated is provided from the auth router
-app.get('/', (req, res) => {
-  res.redirect('/welcome');
-}
-);
-
-app.get('/welcome', requiresAuth(), (req, res) => {
-  res.sendFile(dirPath+'welcome.html');
-}
-);
-
-app.get('/addaccount', requiresAuth(), (req, res) => {
-  res.sendFile(dirPath+'addaccount.html');
-}
-);
-
-app.get('/monthlycont', requiresAuth(), (req, res) => {
-  res.sendFile(dirPath+'monthlycont.html');
-}
-);
-
-app.get('/dashboard', requiresAuth(), (req, res) => {
-  res.sendFile(dirPath+'dashboard.html');
+router.get('/', (request, response) => {
+  response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 });
 
-app.get('/savehouse', requiresAuth(), (req, res) => {
-  res.sendFile(dirPath+'savehouse.html');
+router.get('/user', requiresAuth(), (request, response) => {
+    response.send(JSON.stringify(request.oidc.user));
 });
 
-app.get('/user', (req, res) => {
-  let user = data.get_user_by_user_id(req.query.user_id);
-  const userDetails = JSON.parse(JSON.stringify(req.oidc.user));
-  const userName = userDetails.given_name;
-  res.send(userName);
-  // res.send(JSON.stringify(req.oidc.user));
-  // res.status(200).send(user);
-});
+module.exports = {router} ;
 
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
