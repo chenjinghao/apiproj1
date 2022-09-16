@@ -3,10 +3,10 @@ const mysql = require('mysql');
 // setup database connection    
 const pool = mysql.createPool({
     connectionLimit: 10,
-    password: 'password',
+    password: 'fintechsg',
     user: 'root',
-    database: 'nusmoney',
-    host: 'localhost',
+    database: 'Project9C',
+    host: '34.87.190.25',
     port: '3306'
 });
 
