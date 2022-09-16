@@ -1,14 +1,17 @@
 const mysql = require('mysql');
+require('dotenv').config();
 
 // setup database connection    
-const pool = mysql.createPool({
+var properties = {
     connectionLimit: 10,
-    password: 'password',
-    user: 'root',
-    database: 'nusmoney',
-    host: 'localhost',
-    port: '3306'
-});
+    password: process.env.DBPASSWD,
+    user: process.env.DBUSER,
+    database: process.env.DBNAME,
+    host: process.env.DBHOST,
+    port: process.env.DBPORT
+};
+
+const pool = mysql.createPool(properties);
 
 let nusmoneydb = {};
 
