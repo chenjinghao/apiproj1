@@ -1,6 +1,3 @@
-// demonstration of using Auth0 to login users before allowing access to endpoints
-// to step through this, see James Quick's video tutorial at https://www.youtube.com/watch?v=QQwo4E_B0y8
-
 const express = require('express');
 const data = require("./data");
 const app = express();
@@ -16,6 +13,7 @@ app.use('/frontend/js', express.static("frontend/js"))
 require('dotenv').config();
 
 const { auth, requiresAuth } = require('express-openid-connect');
+const { response } = require('express');
 //const { nextTick } = require('process');
 app.use(
   auth({
@@ -31,11 +29,7 @@ app.use(
 
 // req.isAuthenticated is provided from the auth router
 app.get('/', (req, res) => {
-
   res.redirect('/welcome');
-
-  // res.sendFile(dirPath);
-  // res.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 }
 );
 
@@ -62,11 +56,15 @@ app.get('/savehouse', requiresAuth(), (req, res) => {
   res.sendFile(dirPath+'savehouse.html');
 });
 
-app.get('/', (req, res) => {
+app.get('/user', (req, res) => {
   let user = data.get_user_by_user_id(req.query.user_id);
-  res.send(JSON.stringify(req.oidc.user));
-  res.status(200).send(user);
+  const userDetails = JSON.parse(JSON.stringify(req.oidc.user));
+  const userName = userDetails.given_name;
+  res.send(userName);
+  // res.send(JSON.stringify(req.oidc.user));
+  // res.status(200).send(user);
 });
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
