@@ -5,10 +5,12 @@ const { mysqlConnection } = require("./database");
 let router = express.Router();
 
 //Database Actions
+//Get all users
 router.get("/user/all", (request, response) => {
     mysqlConnection.query("SELECT * FROM users", (errors, results) => {
     if (errors) {
       console.log(errors);
+      console.trace('fatal error: ' + err.message);
       response.status(500).send("Some error occurred at the backend.");
     } else {
       response.status(200).send(results);
@@ -16,6 +18,7 @@ router.get("/user/all", (request, response) => {
   });
 });
 
+//Get user by GoogleID
 router.get("/user/:userID", (request, response) => {  
   mysqlConnection.query(`SELECT * FROM users where GoogleID = ${request.params.userID}`, (errors, results) => {
     if (errors) {
@@ -27,6 +30,7 @@ router.get("/user/:userID", (request, response) => {
   })
 });
 
+//Get assets by GoogleID
 router.get("/asset/:userID", (request, response) => { 
   mysqlConnection.query(`SELECT * FROM Assets where GoogleID = ${request.params.userID}`, (errors, results) => {
     if (errors) {
@@ -38,7 +42,7 @@ router.get("/asset/:userID", (request, response) => {
   })
 });
 
-
+//Add New User
 router.post("/user/add", (request,response) => {
   mysqlConnection.query(`INSERT INTO users (GoogleID, FirstName, LastName, Email)
   values ('${request.body.GoogleID}','${request.body.FirstName}', '${request.body.LastName}', '${request.body.Email}')`, (errors, results) => {
@@ -50,6 +54,7 @@ router.post("/user/add", (request,response) => {
     }
   })
 });
+
 //update goalamt
 router.put("/user/:userID", (request,response) => {
   mysqlConnection.query(`
@@ -65,6 +70,24 @@ router.put("/user/:userID", (request,response) => {
         response.status(200).send("GoalAmount Update!");
       }
     }
+
+
+
+//Add Asset by GoogleID
+router.post("/addasset/:userID", (request,response) => {
+
+  let balance = parseInt(request.body.AccountBalance);
+
+  mysqlConnection.query(`INSERT INTO Assets (GoogleID, AccountName, AccountNumber, AccountBalance)
+  values ('${request.params.userID}','${request.body.AccountName}', '${request.body.AccountNumber}', '${balance}')`, (errors, results) => {
+    if (errors) {
+      console.log(errors);
+      response.status(500).send("Some error occurred at the backend.");
+    } else {
+      response.status(200).send("Created successfully!");
+    }
+  })
+
 });
 
 //Landing Page

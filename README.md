@@ -15,23 +15,23 @@ Business Analyst: Maggie
 Coders: Adam, Beatrice, Justin, Nithin
 
 ### Tools for technical development:
-Glitch, VSC, Heroku, Postman, Google Cloud Platform, my SQL
+Glitch, VSC, Heroku, Postman, Netlify, Google Cloud Platform, mySQL
 
 ### Tools used for Cloud based Collaboration:
-Mural, MS Teams for meetings, Miro Kudo Wall, Git, Github
+Mural, MS Teams for meetings, Sharepoint, Powerpoint, Miro Kudo Wall, Git, Github
 
 ### Method:
 Applied Scrum on Agile Project Management.
 
 Conduct Planning Meeting, Daily standups, bi-monthly Retrospectives, MVP delivery.
 
-A static prototype was developed on powerpoint to allow coders to ask questions and clarify doubts.
+A static prototype was developed on powerpoint to put concepts onto the drawing board. It allows team to slice and dice the conceptual model to test the robustness of model, and allow team to ask questions and clarify doubts.
 
 Team is split into frontend and backend coders writing small sections of the app independently.
 
 Over a few days of intensive coding, the team regroups daily to piece the parts together.
 
-Cumbersome codes were re-written to streamline, or modified to make parts work. Frontend codes were tested first while the team is still learning to deploy the database to the backend.
+Cumbersome codes were re-written to streamline, or modified to make parts work independently and successfully first before layering in more features and complexity when joined. Frontend codes were tested first while the team is still learning to deploy the database to the backend.
 
 We also had to ensure the Auth0 authentication could work with our codes.
 
@@ -42,5 +42,7 @@ coding on: https://apiproj.glitch.me/
 
 Heroku Link: https://nus-money.herokuapp.com/
 
-### Story Board:
-Refer to Powerpoint presentation
+NUS Money Frontend Link: https://nus-money.netlify.app/
+
+### Story Board: Refer to Powerpoint presentation https://nusu.sharepoint.com/:p:/r/sites/9CCapstoneProject/Shared%20Documents/General/NUS%20Money/Prototype.pptx?d=wbdd246dba4904b808241f2eff659e448&csf=1&web=1&e=280Fqm
+
