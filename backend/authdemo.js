@@ -28,5 +28,9 @@ router.get('/user', requiresAuth(), (request, response) => {
     response.send(JSON.stringify(request.oidc.user));
 });
 
+router.get('/logout', (request, response) => {
+  response.redirect("https://nus-money.netlify.app/");
+});
+
 module.exports = {router} ;
 
