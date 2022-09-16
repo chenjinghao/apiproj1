@@ -31,14 +31,14 @@ var q = require('q');
 var MySQLConnection = {};
 
 MySQLConnection.connect = function () {
-  //     var d = q.defer();
-  //     MySQLConnection.connection = mysql.createConnection({
-  password: process.env.DBPASSWD,
+  var d = q.defer();
+  MySQLConnection.connection = mysql.createConnection({
+    password: process.env.DBPASSWD,
     user: process.env.DBUSER,
-      database: process.env.DBNAME,
-        host: process.env.DBHOST,
-          port: process.env.DBPORT
-  //     });
+    database: process.env.DBNAME,
+    host: process.env.DBHOST,
+    port: process.env.DBPORT
+  });
 
   MySQLConnection.connection.connect(function (err) {
     if (err) {
