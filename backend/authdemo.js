@@ -28,7 +28,7 @@ router.use(
 );
 
 app.get('/login', (request, response) => {
-  response.redirect("http://nus-money.netlify.app/");
+  response.redirect("https://nus-money.netlify.app/");
 });
 
 app.get('/custom-logout', (request, response) => {
