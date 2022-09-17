@@ -20,21 +20,116 @@ router.get("/user/all", (request, response) => {
 
 //Get user details -> Query in the form: {{url}}/user?GoogleID=2&Income=8000
 router.get('/user', (req, res, next) => {
-  
-  mysqlConnection.query(`SELECT * FROM users`, (errors, results) =>{
+  mysqlConnection.query(`SELECT * FROM users`, (errors, results) => {
     if (errors) {
       console.log(errors);
-      response.status(500).send("Some error occurred at the backend.");
+      res.status(500).send("Some error occurred at the backend.");
     } else {
       const filters = req.query;
       const filteredUsers = results.filter(user => {
         let isValid = true;
         for (key in filters) {
-           isValid = isValid && user[key] == filters[key];
+          isValid = isValid && user[key] == filters[key];
         }
         return isValid;
       });
       res.send(filteredUsers);
+    }
+  });
+});
+
+
+//Nithin: Authentication Trial (sample based on FirstName -> Query in the form: {{url}}/FirstName
+router.get("/:users", async (req, res) => {
+  const query = "SELECT * FROM users WHERE FirstName = ?";
+  mysqlConnection.query(query, [req.params.users], (error, results) => {
+    if (!results[0]) {
+      res.json({ status: "Not Found!" });
+    } else {
+      res.json({ status: "valid user", data: results[0] });
+    }
+  });
+});
+
+
+// Nithin: Adding data to table eg: in postman -> POST: localhost:3000/new -> Body -> raw -> JSON
+// {
+//     "GoogleID" : 9,
+//     "FirstName": "Mike",
+//     "LastName": "Tyson",
+//     "Email": "mike@tyson.com"
+// }
+router.post("/new", async (req, res) => {
+  const data = {
+    GoogleID: req.body.GoogleID,
+    FirstName: req.body.FirstName,
+    LastName: req.body.LastName,
+    Email: req.body.Email,
+    DownPaymentAllocated: req.body.DownPaymentAllocated,
+    GoalAmount: req.body.GoalAmount,
+    PurchaseDate: req.body.PurchaseDate,
+    KeyCollectionDate: req.body.KeyCollectionDate,
+    DownPaymentRequired: req.body.DownPaymentRequired,
+    MonthstoGoal: req.body.MonthstoGoal,
+    MonthlyContribution: req.body.MonthlyContribution,
+    Income: req.body.Income,
+    PersonalSavings: req.body.PersonalSavings,
+    Investment: req.body.Investment,
+    Housing: req.body.Housing,
+    Insurance: req.body.Insurance,
+    Others: req.body.Others,
+    Mobile: req.body.Mobile,
+    Transport: req.body.Transport,
+    Food: req.body.Food
+  }
+  const query = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  mysqlConnection.query(query, Object.values(data), (error) => {
+    if (error) {
+      res.json({ status: "failure", reason: error.code });
+      console.log(data);
+    } else {
+      res.json({ status: "success", data: data });
+    }
+  });
+});
+
+//Nithin: Updating Table
+router.put("/update", async (req, res) => {
+  const data = {
+    FirstName: req.body.FirstName,
+    // LastName: req.body.LastName,
+    // Email: req.body.Email,
+    DownPaymentAllocated: req.body.DownPaymentAllocated,
+    GoalAmount: req.body.GoalAmount,
+    // PurchaseDate: req.body.PurchaseDate,
+    // KeyCollectionDate: req.body.KeyCollectionDate,
+    // DownPaymentRequired: req.body.DownPaymentRequired,
+    // MonthstoGoal: req.body.MonthstoGoal,
+    // MonthlyContribution: req.body.MonthlyContribution,
+    // Income: req.body.Income,
+    // PersonalSavings: req.body.PersonalSavings,
+    // Investment: req.body.Investment,
+    // Housing: req.body.Housing,
+    // Insurance: req.body.Insurance,
+    // Others: req.body.Others,
+    // Mobile: req.body.Mobile,
+    // Transport: req.body.Transport,
+    // Food: req.body.Food,
+    GoogleID: req.body.GoogleID
+  }
+  // const query = "UPDATE users SET FirstName = ?, LastName = ?, Email = ?, DownPaymentAllocated = ?, GoalAmount = ?, PurchaseDate = ?, KeyCollectionDate = ?, DownPaymentRequired = ?, MonthstoGoal = ?, MonthlyContribution: ?, Income = ?, PersonalSavings = ?, Investment = ?, Housing = ?, Insurance = ?, Others = ?, Mobile = ?, Transport = ?, Food = ? WHERE GoogleID = ?";
+  const query = `UPDATE users SET
+  FirstName = ?,
+  DownPaymentAllocated = ?,
+  GoalAmount = ?
+  WHERE GoogleID = ?`;
+
+  mysqlConnection.query(query, Object.values(data), (error) => {
+    if (error) {
+      res.json({ status: "failure", reason: error.code });
+      console.log(data);
+    } else {
+      res.json({ status: "success", data: data });
     }
   });
 });
@@ -78,33 +173,34 @@ router.put("/user/:userID", (request, response) => {
       } else {
         response.status(200).send("GoalAmount Update!");
       }
-    }});
+    }
+});
 
 
 
-  //Add Asset by GoogleID
-  router.post("/addasset/:userID", (request, response) => {
+//Add Asset by GoogleID
+router.post("/addasset/:userID", (request, response) => {
 
-    let balance = parseInt(request.body.AccountBalance);
+  let balance = parseInt(request.body.AccountBalance);
 
-    mysqlConnection.query(`INSERT INTO Assets (GoogleID, AccountName, AccountNumber, AccountBalance)
+  mysqlConnection.query(`INSERT INTO Assets (GoogleID, AccountName, AccountNumber, AccountBalance)
   values ('${request.params.userID}','${request.body.AccountName}', '${request.body.AccountNumber}', '${balance}')`, (errors, results) => {
-      if (errors) {
-        console.log(errors);
-        response.status(500).send("Some error occurred at the backend.");
-      } else {
-        response.status(200).send("Created successfully!");
-      }
-    })
+    if (errors) {
+      console.log(errors);
+      response.status(500).send("Some error occurred at the backend.");
+    } else {
+      response.status(200).send("Created successfully!");
+    }
+  })
 
-  });
+});
 
-  
 
-  //Landing Page (No landing page from backend. we need it to only return json)
-  //router.get('/', (req, res) => {
- //   res.redirect('https://nus-money.netlify.app/index.html');
-  //}
- // );
 
-  module.exports = { router };
+//Landing Page (No landing page from backend. we need it to only return json)
+//router.get('/', (req, res) => {
+//   res.redirect('https://nus-money.netlify.app/index.html');
+//}
+// );
+
+module.exports = { router };

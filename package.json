@@ -4,7 +4,7 @@
   "description": "My first backend code.",
   "main": "./backend/authdemo.js",
   "scripts": {
-    "start": "node ./frontend/js/script.js"
+    "start": "node ./backend/main.js"
   },
   "author": "Beatrice",
   "license": "ISC",
