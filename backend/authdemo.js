@@ -40,9 +40,9 @@ router.get('/', (request, response) => {
   response.send(request.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
 });
 
-router.get('/user', (request, response) => {
-    response.send(JSON.stringify(request.oidc.user));
-});
+//router.get('/user', (request, response) => {
+//   response.send(JSON.stringify(request.oidc.user));
+//});
 
 
 module.exports = {router} ;
