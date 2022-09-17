@@ -28,11 +28,11 @@ router.use(
 );
 
 app.get('/login', (request, response) => {
-  response.redirect("https://nus-money.netlify.app/");
+  response.redirect("http://nus-money.netlify.app/");
 });
 
 app.get('/custom-logout', (request, response) => {
-  response.redirect("https://nus-money.netlify.app/");
+  response.redirect("http://nus-money.netlify.app/");
 });
 
 // req.isAuthenticated is provided from the auth router
