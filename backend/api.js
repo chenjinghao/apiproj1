@@ -18,16 +18,25 @@ router.get("/user/all", (request, response) => {
   });
 });
 
-//Get user by GoogleID
-router.get("/user/:userID", (request, response) => {
-  mysqlConnection.query(`SELECT * FROM users where GoogleID = ${request.params.userID}`, (errors, results) => {
+//Get user details -> Query in the form: {{url}}/user?GoogleID=2&Income=8000
+router.get('/user', (req, res, next) => {
+  
+  mysqlConnection.query(`SELECT * FROM users`, (errors, results) =>{
     if (errors) {
       console.log(errors);
       response.status(500).send("Some error occurred at the backend.");
     } else {
-      response.status(200).send(results);
+      const filters = req.query;
+      const filteredUsers = results.filter(user => {
+        let isValid = true;
+        for (key in filters) {
+           isValid = isValid && user[key] == filters[key];
+        }
+        return isValid;
+      });
+      res.send(filteredUsers);
     }
-  })
+  });
 });
 
 //Get assets by GoogleID
