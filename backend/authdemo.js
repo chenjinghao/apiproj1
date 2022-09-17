@@ -28,7 +28,7 @@ router.use(
 );
 
 router.get('/login', requiresAuth(), (request, response) => {
-  response.redirect("https://nus-money.netlify.app/");
+  response.redirect("https://nus-money.netlify.app/welcome.html");
 });
 
 router.get('/custom-logout', (request, response) => {
