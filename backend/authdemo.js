@@ -8,7 +8,8 @@ const { auth, requiresAuth } = require('express-openid-connect');
 const { response } = require('express');
 const { nextTick } = require('process');
 router.use(
-  auth({
+  auth(
+  {
     authRequired: false,
     auth0Logout: true,
     issuerBaseURL: process.env.ISSUER_BASE_URL,
@@ -16,8 +17,23 @@ router.use(
     clientID: process.env.CLIENT_ID,
     secret: process.env.SECRET,
     idpLogout: true,
+    routes: {
+      // Override the default login route to use your own login route as shown below
+      login: false,
+      // Pass a custom path to redirect users to a different
+      // path after logout.
+      postLogoutRedirect: '/custom-logout',
+    },
   })
 );
+
+app.get('/login', (request, response) => {
+  response.redirect("https://nus-money.netlify.app/");
+});
+
+app.get('/custom-logout', (request, response) => {
+  response.redirect("https://nus-money.netlify.app/");
+});
 
 // req.isAuthenticated is provided from the auth router
 router.get('/', (request, response) => {
@@ -28,9 +44,6 @@ router.get('/user', requiresAuth(), (request, response) => {
     response.send(JSON.stringify(request.oidc.user));
 });
 
-router.get('/logout', (request, response) => {
-  response.redirect("https://nus-money.netlify.app/");
-});
 
 module.exports = {router} ;
 
