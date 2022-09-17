@@ -27,7 +27,7 @@ router.use(
   })
 );
 
-router.get('/login', (request, response) => {
+router.get('/login', requiresAuth(), (request, response) => {
   response.redirect("https://nus-money.netlify.app/");
 });
 
