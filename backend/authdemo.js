@@ -27,11 +27,11 @@ router.use(
   })
 );
 
-app.get('/login', (request, response) => {
+router.get('/login', (request, response) => {
   response.redirect("https://nus-money.netlify.app/");
 });
 
-app.get('/custom-logout', (request, response) => {
+router.get('/custom-logout', (request, response) => {
   response.redirect("http://nus-money.netlify.app/");
 });
 
