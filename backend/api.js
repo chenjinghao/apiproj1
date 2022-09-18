@@ -40,13 +40,37 @@ router.get('/user', (req, res, next) => {
 
 
 //Nithin: Authentication Trial (sample based on FirstName -> Query in the form: {{url}}/FirstName
-router.get("/:users", async (req, res) => {
-  const query = "SELECT * FROM users WHERE FirstName = ?";
-  mysqlConnection.query(query, [req.params.users], (error, results) => {
-    if (!results[0]) {
-      res.json({ status: "Not Found!" });
+// router.get("/:users", async (req, res) => {
+//   const query = "SELECT * FROM users WHERE FirstName = ?";
+//   mysqlConnection.query(query, [req.params.users], (error, results) => {
+//     if (!results[0]) {
+//       res.json({ status: "Not Found!" });
+//     } else {
+//       res.json({ status: "valid user", data: results[0] });
+//     }
+//   });
+// });
+
+//Nithin: Authenticate trial 4
+router.get('/login', (req, res, next) => {
+  mysqlConnection.query(`SELECT * FROM users`, (errors, results) => {
+    if (errors) {
+      console.log(errors);
+      res.status(500).send("Some error occurred at the backend.");
     } else {
-      res.json({ status: "valid user", data: results[0] });
+      const filters = req.query;
+      const filteredUsers = results.filter(user => {
+        let isValid = true;
+        for (key in filters) {
+          isValid = isValid && user[key] == filters[key];
+        }
+        return isValid;
+      });
+      if (!filteredUsers[0]) {
+        res.json({ success: false });
+      } else {
+        res.json({ success: true });
+      }
     }
   });
 });
@@ -166,7 +190,7 @@ router.put("/user/:userID", (request, response) => {
   SET
     GoalAmount = ${request.body.GoalAmount}
   WHERE
-    GoogleID = ${request.params.userID}`), (errors, results) => {
+    GoogleID = "${request.params.userID}"`), (errors, results) => {
       if (errors) {
         console.log(errors);
         response.status(500).send("Some error occurred at the backend.");
