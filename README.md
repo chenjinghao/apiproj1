@@ -44,7 +44,8 @@ Heroku Link: https://nus-money.herokuapp.com/
 
 NUS Money Frontend Link: https://nus-money.netlify.app/
 
-### Story Board: Refer to Powerpoint presentation https://nusu.sharepoint.com/:p:/r/sites/9CCapstoneProject/Shared%20Documents/General/NUS%20Money/Prototype.pptx?d=wbdd246dba4904b808241f2eff659e448&csf=1&web=1&e=280Fqm
+### Story Board: Refer to Powerpoint presentation
+https://nusu.sharepoint.com/:p:/r/sites/9CCapstoneProject/Shared%20Documents/General/NUS%20Money/Prototype.pptx?d=wbdd246dba4904b808241f2eff659e448&csf=1&web=1&e=280Fqm
 
 ### Reference https://en.wikipedia.org/wiki/README
 
