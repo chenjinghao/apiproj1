@@ -222,7 +222,7 @@ router.put("/income/:userID", (request, response) => {
     }
 });
 
-//Add Asset by GoogleID
+//Add Asset by GoogleID (addaccount.html)
 router.post("/addasset/:userID", (request, response) => {
 
   let balance = parseInt(request.body.AccountBalance);
@@ -239,7 +239,22 @@ router.post("/addasset/:userID", (request, response) => {
 
 });
 
-
+//update user by GoogleID (cont. addaccount.html)
+router.put("/downpayment/:userID", (request, response) => {
+  mysqlConnection.query(`
+  UPDATE users 
+  SET
+    DownPaymentAllocated = ${request.body.DownPaymentAllocated}
+  WHERE
+    GoogleID = "${request.params.userID}"`), (errors, results) => {
+      if (errors) {
+        console.log(errors);
+        response.status(500).send("Some error occurred at the backend.");
+      } else {
+        response.status(200).send("downpayment Update!");
+      }
+    }
+});
 
 //Landing Page (No landing page from backend. we need it to only return json)
 //router.get('/', (req, res) => {
