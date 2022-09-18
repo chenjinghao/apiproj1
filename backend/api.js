@@ -183,12 +183,14 @@ router.post("/user/add", (request, response) => {
   })
 });
 
-//update goalamt
-router.put("/user/:userID", (request, response) => {
+//update goalamt for savehouse.html
+router.put("/goalamt/:userID", (request, response) => {
   mysqlConnection.query(`
   UPDATE users 
   SET
-    GoalAmount = ${request.body.GoalAmount}
+    GoalAmount = ${request.body.GoalAmount},
+    PurchaseDate = "${request.body.PurchaseDate}",
+    KeyCollectionDate = "${request.body.KeyCollectionDate}"
   WHERE
     GoogleID = "${request.params.userID}"`), (errors, results) => {
       if (errors) {
@@ -200,7 +202,25 @@ router.put("/user/:userID", (request, response) => {
     }
 });
 
-
+//update income for monthlycont.html
+router.put("/income/:userID", (request, response) => {
+  mysqlConnection.query(`
+  UPDATE users 
+  SET
+    PersonalSavings = ${request.body.PersonalSavings},
+    Investment = ${request.body.Investment},
+    Housing = ${request.body.Housing},
+    Insurance = ${request.body.Insurance}
+  WHERE
+    GoogleID = "${request.params.userID}"`), (errors, results) => {
+      if (errors) {
+        console.log(errors);
+        response.status(500).send("Some error occurred at the backend.");
+      } else {
+        response.status(200).send("Income Update!");
+      }
+    }
+});
 
 //Add Asset by GoogleID
 router.post("/addasset/:userID", (request, response) => {
