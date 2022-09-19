@@ -22,15 +22,29 @@ router.get("/user/all", (request, response) => {
 router.get('/user', (req, res, next) => {
 //  mysqlConnection.query(`SELECT * FROM users`, (errors, results) => {
     mysqlConnection.query(`
-      SELECT 
-        FirstName
-/*         , LastName
+      SELECT Email, FirstName, KeyCollectionDate (date,'%d/%m/%Y') FROM users`, (errors, results) => {
+        if (errors) {
+          console.log(errors);
+          res.status(500).send("Some error occurred at the backend.");
+        } else {
+          const filters = req.query;
+          const filteredUsers = results.filter(user => {
+            let isValid = true;
+            for (key in filters) {
+              isValid = isValid && user[key] == filters[key];
+            }
+            return isValid;
+          });
+          res.send(filteredUsers);
+        }
+      });
+    });
+        /*      , LastName
         , Email
         , DownPaymentAllocate
         , GoalAmount
-        , Purchasedate (date,'%d/%m/%Y') */
-        , KeyCollectionDate (date,'%d/%m/%Y')
-/*         , DownPayment Required
+        , Purchasedate (date,'%d/%m/%Y') 
+        , DownPayment Required
         , MonthstoGoal
         , MonthlyContribution
         , Income
@@ -42,23 +56,8 @@ router.get('/user', (req, res, next) => {
         , Mobile
         , Transport
         , Food */
-      FROM users`, (errors, results) => {
-    if (errors) {
-      console.log(errors);
-      res.status(500).send("Some error occurred at the backend.");
-    } else {
-      const filters = req.query;
-      const filteredUsers = results.filter(user => {
-        let isValid = true;
-        for (key in filters) {
-          isValid = isValid && user[key] == filters[key];
-        }
-        return isValid;
-      });
-      res.send(filteredUsers);
-    }
-  });
-});
+      
+
 
 //Get Asset details -> Query in the form: {{url}}/assets?GoogleID=2&Income=8000
 router.get('/assets', (req, res, next) => {
