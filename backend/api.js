@@ -20,46 +20,46 @@ router.get("/user/all", (request, response) => {
 
 //Get user details -> Query in the form: {{url}}/user?GoogleID=2&Income=8000
 router.get('/user', (req, res, next) => {
-mysqlConnection.query("select * from users", (errors, results) => {
-        if (errors) {
-          console.log(errors);
-          res.status(500).send("Some error occurred at the backend.");
-        } else {
-          const filters = req.query;
-          const filteredUsers = results.filter(user => {
-            let isValid = true;
-            console.log(user);
-            for (key in filters) {
-              console.log(key, user[key], filters[key]);
-              isValid = isValid && user[key] == filters[key];
-            }
-            return isValid;
-          });
-          res.send(filteredUsers);
+  mysqlConnection.query("select * from users", (errors, results) => {
+    if (errors) {
+      console.log(errors);
+      res.status(500).send("Some error occurred at the backend.");
+    } else {
+      const filters = req.query;
+      const filteredUsers = results.filter(user => {
+        let isValid = true;
+        console.log(user);
+        for (key in filters) {
+          console.log(key, user[key], filters[key]);
+          isValid = isValid && user[key] == filters[key];
         }
+        return isValid;
       });
-    });
+      res.send(filteredUsers);
+    }
+  });
+});
 
 
 //    mysqlConnection.query(`SELECT Email, FirstName, KeyCollectionDate (date,'%d/%m/%Y') FROM users`, (errors, results) => {
-        /*      , LastName
-        , Email
-        , DownPaymentAllocate
-        , GoalAmount
-        , Purchasedate (date,'%d/%m/%Y') 
-        , DownPayment Required
-        , MonthstoGoal
-        , MonthlyContribution
-        , Income
-        , PersonalSavings
-        , Investment
-        , Housing
-        , Insurance
-        , Others
-        , Mobile
-        , Transport
-        , Food */
-      
+/*      , LastName
+, Email
+, DownPaymentAllocate
+, GoalAmount
+, Purchasedate (date,'%d/%m/%Y') 
+, DownPayment Required
+, MonthstoGoal
+, MonthlyContribution
+, Income
+, PersonalSavings
+, Investment
+, Housing
+, Insurance
+, Others
+, Mobile
+, Transport
+, Food */
+
 
 
 //Get Asset details -> Query in the form: {{url}}/assets?GoogleID=2&Income=8000
@@ -173,6 +173,50 @@ router.post("/new", async (req, res) => {
   });
 });
 
+//Nithin: Update Assets
+router.put("/update/assets", async (req, res) => {
+  const data = {
+    accountname: req.body.accountname,
+    accountnumber: req.body.accountnumber,
+    balance: req.body.balance,
+    email: req.body.email
+  }
+  const query = `UPDATE assets SET
+  accountname = ?,
+  accountnumber = ?,
+  balance = ?
+  WHERE email = ?`;
+
+  mysqlConnection.query(query, Object.values(data), (error) => {
+    if (error) {
+      res.json({ status: "failure", reason: error.code });
+      console.log(data);
+    } else {
+      res.json({ status: "success", data: data });
+    }
+  });
+});
+
+//Nithin: Update Downpayment
+router.put("/update/downpayment", async (req, res) => {
+  const data = {
+    DownPaymentAllocated: req.body.DownPaymentAllocated,
+    Email: req.body.email
+  }
+  const query = `UPDATE users SET
+  DownPaymentAllocated = ?
+  WHERE Email = ?`;
+
+  mysqlConnection.query(query, Object.values(data), (error) => {
+    if (error) {
+      res.json({ status: "failure", reason: error.code });
+      console.log(data);
+    } else {
+      res.json({ status: "success", data: data });
+    }
+  });
+});
+
 //Nithin: Updating Table
 router.put("/update", async (req, res) => {
   const data = {
@@ -223,11 +267,11 @@ router.put("/updatehouse", async (req, res) => {
     // Email: req.body.Email,
     //DownPaymentAllocated: req.body.DownPaymentAllocated,
     GoalAmount: req.body.GoalAmount,
-     PurchaseDate: req.body.PurchaseDate,
-     KeyCollectionDate: req.body.KeyCollectionDate,
+    PurchaseDate: req.body.PurchaseDate,
+    KeyCollectionDate: req.body.KeyCollectionDate,
     DownPaymentRequired: req.body.DownPaymentRequired,
-     MonthstoGoal: req.body.MonthstoGoal,
-     MonthlyContribution: req.body.MonthlyContribution,
+    MonthstoGoal: req.body.MonthstoGoal,
+    MonthlyContribution: req.body.MonthlyContribution,
     // Income: req.body.Income,
     // PersonalSavings: req.body.PersonalSavings,
     // Investment: req.body.Investment,
@@ -237,7 +281,7 @@ router.put("/updatehouse", async (req, res) => {
     // Mobile: req.body.Mobile,
     // Transport: req.body.Transport,
     // Food: req.body.Food,
-    //GoogleID: req.body.GoogleID
+    // GoogleID: req.body.GoogleID
     Email: req.body.Email
   }
   // const query = "UPDATE users SET FirstName = ?, LastName = ?, Email = ?, DownPaymentAllocated = ?, GoalAmount = ?, PurchaseDate = ?, KeyCollectionDate = ?, DownPaymentRequired = ?, MonthstoGoal = ?, MonthlyContribution: ?, Income = ?, PersonalSavings = ?, Investment = ?, Housing = ?, Insurance = ?, Others = ?, Mobile = ?, Transport = ?, Food = ? WHERE GoogleID = ?";
