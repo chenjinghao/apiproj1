@@ -178,6 +178,51 @@ router.put("/update", async (req, res) => {
   });
 });
 
+//Beatrice: for savehouse
+router.put("/updatehouse", async (req, res) => {
+  const data = {
+    //FirstName: req.body.FirstName,
+    // LastName: req.body.LastName,
+    // Email: req.body.Email,
+    //DownPaymentAllocated: req.body.DownPaymentAllocated,
+    GoalAmount: req.body.GoalAmount,
+     PurchaseDate: req.body.PurchaseDate,
+     KeyCollectionDate: req.body.KeyCollectionDate,
+    DownPaymentRequired: req.body.DownPaymentRequired,
+     MonthstoGoal: req.body.MonthstoGoal,
+     MonthlyContribution: req.body.MonthlyContribution,
+    // Income: req.body.Income,
+    // PersonalSavings: req.body.PersonalSavings,
+    // Investment: req.body.Investment,
+    // Housing: req.body.Housing,
+    // Insurance: req.body.Insurance,
+    // Others: req.body.Others,
+    // Mobile: req.body.Mobile,
+    // Transport: req.body.Transport,
+    // Food: req.body.Food,
+    //GoogleID: req.body.GoogleID
+    Email: req.body.Email
+  }
+  // const query = "UPDATE users SET FirstName = ?, LastName = ?, Email = ?, DownPaymentAllocated = ?, GoalAmount = ?, PurchaseDate = ?, KeyCollectionDate = ?, DownPaymentRequired = ?, MonthstoGoal = ?, MonthlyContribution: ?, Income = ?, PersonalSavings = ?, Investment = ?, Housing = ?, Insurance = ?, Others = ?, Mobile = ?, Transport = ?, Food = ? WHERE GoogleID = ?";
+  const query = `UPDATE users SET
+  GoalAmount = ?,
+  PurchaseDate = ?,
+  KeyCollectionDate = ?,
+  DownPaymentRequired = ?,
+  MonthstoGoal = ?,
+  MonthlyContribution = ?
+  WHERE Email = ?`;
+
+  mysqlConnection.query(query, Object.values(data), (error) => {
+    if (error) {
+      res.json({ status: "failure", reason: error.code });
+      console.log(data);
+    } else {
+      res.json({ status: "success", data: data });
+    }
+  });
+});
+
 
 //Add New User
 router.post("/user/add", (request, response) => {
