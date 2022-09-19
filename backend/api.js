@@ -158,14 +158,15 @@ router.put("/update", async (req, res) => {
     // Mobile: req.body.Mobile,
     // Transport: req.body.Transport,
     // Food: req.body.Food,
-    GoogleID: req.body.GoogleID
+    //GoogleID: req.body.GoogleID
+    Email: req.body.Email
   }
   // const query = "UPDATE users SET FirstName = ?, LastName = ?, Email = ?, DownPaymentAllocated = ?, GoalAmount = ?, PurchaseDate = ?, KeyCollectionDate = ?, DownPaymentRequired = ?, MonthstoGoal = ?, MonthlyContribution: ?, Income = ?, PersonalSavings = ?, Investment = ?, Housing = ?, Insurance = ?, Others = ?, Mobile = ?, Transport = ?, Food = ? WHERE GoogleID = ?";
   const query = `UPDATE users SET
   FirstName = ?,
   DownPaymentAllocated = ?,
   GoalAmount = ?
-  WHERE GoogleID = ?`;
+  WHERE Email = ?`;
 
   mysqlConnection.query(query, Object.values(data), (error) => {
     if (error) {
