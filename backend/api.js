@@ -82,6 +82,19 @@ router.get('/assets', (req, res, next) => {
   });
 });
 
+// 2022-09-19 BEATRICE: Get userdetails by emailID
+router.get("/getuser/:emailID", (request, response) => {
+  mysqlConnection.query(`select * from users where Email="${request.params.emailID}"`, (errors, results) => {
+    if (errors) {
+      console.log(errors);
+      console.trace('fatal error: ' + err.message);
+      response.status(500).send("Some error occurred at the backend.");
+    } else {
+      response.status(200).send(results);
+    }
+  });
+});
+
 //Nithin: Authentication Trial (sample based on FirstName -> Query in the form: {{url}}/FirstName
 // router.get("/:users", async (req, res) => {
 //   const query = "SELECT * FROM users WHERE FirstName = ?";
