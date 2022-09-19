@@ -109,7 +109,7 @@ router.get("/getuser/:emailID", (request, response) => {
 
 
 router.get('/login', (req, res, next) => {
-  mysqlConnection.query(`SELECT * FROM users`, (errors, results) => {
+  mysqlConnection.query(`SELECT * FROM login`, (errors, results) => {
     if (errors) {
       console.log(errors);
       res.status(500).send("Some error occurred at the backend.");
@@ -216,6 +216,45 @@ router.put("/update/downpayment", async (req, res) => {
     }
   });
 });
+
+//Nithin: Update Monthly Contribution
+router.put("/update/contribution", async (req, res) => {
+  const data = {
+    Income: req.body.Income,
+    SavingsTowardsGoal: req.body.SavingsTowardsGoal,
+    PersonalSavings: req.body.PersonalSavings,
+    Investment: req.body.Investment,
+    Housing: req.body.Housing,
+    Insurance: req.body.Insurance,
+    Mobile: req.body.Mobile,
+    Transport: req.body.Transport,
+    Food: req.body.Food,
+    Others: req.body.Others,
+    Email: req.body.email
+  }
+  const query = `UPDATE users SET
+  Income = ?,
+  SavingsTowardsGoal = ?,
+  PersonalSavings = ?,
+  Investment = ?,
+  Housing = ?,
+  Insurance = ?,
+  Mobile = ?,
+  Transport = ?,
+  Food = ?,
+  Others = ?
+  WHERE Email = ?`;
+
+  mysqlConnection.query(query, Object.values(data), (error) => {
+    if (error) {
+      res.json({ status: "failure", reason: error.code });
+      console.log(data);
+    } else {
+      res.json({ status: "success", data: data });
+    }
+  });
+});
+
 
 //Nithin: Updating Table
 router.put("/update", async (req, res) => {
