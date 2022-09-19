@@ -38,6 +38,25 @@ router.get('/user', (req, res, next) => {
   });
 });
 
+//Get Asset details -> Query in the form: {{url}}/assets?GoogleID=2&Income=8000
+router.get('/assets', (req, res, next) => {
+  mysqlConnection.query(`SELECT * FROM Assets`, (errors, results) => {
+    if (errors) {
+      console.log(errors);
+      res.status(500).send("Some error occurred at the backend.");
+    } else {
+      const filters = req.query;
+      const filteredUsers = results.filter(user => {
+        let isValid = true;
+        for (key in filters) {
+          isValid = isValid && user[key] == filters[key];
+        }
+        return isValid;
+      });
+      res.send(filteredUsers);
+    }
+  });
+});
 
 //Nithin: Authentication Trial (sample based on FirstName -> Query in the form: {{url}}/FirstName
 // router.get("/:users", async (req, res) => {
@@ -51,7 +70,7 @@ router.get('/user', (req, res, next) => {
 //   });
 // });
 
-//Nithin: Authenticate trial 4
+
 router.get('/login', (req, res, next) => {
   mysqlConnection.query(`SELECT * FROM users`, (errors, results) => {
     if (errors) {
@@ -122,31 +141,46 @@ router.put("/update", async (req, res) => {
   const data = {
     FirstName: req.body.FirstName,
     // LastName: req.body.LastName,
-    // Email: req.body.Email,
+    Email: req.body.Email,
     DownPaymentAllocated: req.body.DownPaymentAllocated,
     GoalAmount: req.body.GoalAmount,
-    // PurchaseDate: req.body.PurchaseDate,
-    // KeyCollectionDate: req.body.KeyCollectionDate,
-    // DownPaymentRequired: req.body.DownPaymentRequired,
-    // MonthstoGoal: req.body.MonthstoGoal,
-    // MonthlyContribution: req.body.MonthlyContribution,
-    // Income: req.body.Income,
-    // PersonalSavings: req.body.PersonalSavings,
-    // Investment: req.body.Investment,
-    // Housing: req.body.Housing,
-    // Insurance: req.body.Insurance,
-    // Others: req.body.Others,
-    // Mobile: req.body.Mobile,
-    // Transport: req.body.Transport,
-    // Food: req.body.Food,
+     PurchaseDate: req.body.PurchaseDate,
+     KeyCollectionDate: req.body.KeyCollectionDate,
+     DownPaymentRequired: req.body.DownPaymentRequired,
+     MonthstoGoal: req.body.MonthstoGoal,
+     MonthlyContribution: req.body.MonthlyContribution,
+     Income: req.body.Income,
+     PersonalSavings: req.body.PersonalSavings,
+     Investment: req.body.Investment,
+     Housing: req.body.Housing,
+     Insurance: req.body.Insurance,
+     Others: req.body.Others,
+     Mobile: req.body.Mobile,
+     Transport: req.body.Transport,
+     Food: req.body.Food,
     GoogleID: req.body.GoogleID
   }
   // const query = "UPDATE users SET FirstName = ?, LastName = ?, Email = ?, DownPaymentAllocated = ?, GoalAmount = ?, PurchaseDate = ?, KeyCollectionDate = ?, DownPaymentRequired = ?, MonthstoGoal = ?, MonthlyContribution: ?, Income = ?, PersonalSavings = ?, Investment = ?, Housing = ?, Insurance = ?, Others = ?, Mobile = ?, Transport = ?, Food = ? WHERE GoogleID = ?";
   const query = `UPDATE users SET
   FirstName = ?,
+  GoalAmount=?,
+  PurchaseDate=?,
+  KeyCollectionDate=?,
+  DownPaymentRequired=?,
+  MonthstoGoal=?,
+  MonthlyContribution=?,
+  Income=?,
+  PersonalSavings=?,
+  Investment=?,
+  Housing=?,
+  Insurance=?,
+  Others=?,
+  Mobile=?,
+  Transport=?,
+  Food=?,
   DownPaymentAllocated = ?,
   GoalAmount = ?
-  WHERE GoogleID = ?`;
+  WHERE Email = ?`;
 
   mysqlConnection.query(query, Object.values(data), (error) => {
     if (error) {
@@ -158,17 +192,6 @@ router.put("/update", async (req, res) => {
   });
 });
 
-//Get assets by GoogleID
-router.get("/asset/:userID", (request, response) => {
-  mysqlConnection.query(`SELECT * FROM Assets where GoogleID = ${request.params.userID}`, (errors, results) => {
-    if (errors) {
-      console.log(errors);
-      response.status(500).send("Some error occurred at the backend.");
-    } else {
-      response.status(200).send(results);
-    }
-  })
-});
 
 //Add New User
 router.post("/user/add", (request, response) => {
