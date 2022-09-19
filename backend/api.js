@@ -21,7 +21,6 @@ router.get("/user/all", (request, response) => {
 //Get user details -> Query in the form: {{url}}/user?GoogleID=2&Income=8000
 router.get('/user', (req, res, next) => {
 mysqlConnection.query(`SELECT * FROM users`, (errors, results) => {
-//    mysqlConnection.query(`SELECT Email, FirstName, KeyCollectionDate (date,'%d/%m/%Y') FROM users`, (errors, results) => {
         if (errors) {
           console.log(errors);
           res.status(500).send("Some error occurred at the backend.");
@@ -38,6 +37,8 @@ mysqlConnection.query(`SELECT * FROM users`, (errors, results) => {
         }
       });
     });
+
+//    mysqlConnection.query(`SELECT Email, FirstName, KeyCollectionDate (date,'%d/%m/%Y') FROM users`, (errors, results) => {
         /*      , LastName
         , Email
         , DownPaymentAllocate
