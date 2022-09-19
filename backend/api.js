@@ -7,7 +7,7 @@ let router = express.Router();
 //Database Actions
 //Get all users
 router.get("/user/all", (request, response) => {
-  mysqlConnection.query("CALL GETUsers()", (errors, results) => {
+  mysqlConnection.query("Select * From Users", (errors, results) => {
     if (errors) {
       console.log(errors);
       console.trace('fatal error: ' + err.message);
@@ -20,7 +20,7 @@ router.get("/user/all", (request, response) => {
 
 //Get user details -> Query in the form: {{url}}/user?GoogleID=2&Income=8000
 router.get('/user', (req, res, next) => {
-mysqlConnection.query("CALL GETUsers()", (errors, results) => {
+mysqlConnection.query("Select * From Users", (errors, results) => {
         if (errors) {
           console.log(errors);
           res.status(500).send("Some error occurred at the backend.");
@@ -28,7 +28,9 @@ mysqlConnection.query("CALL GETUsers()", (errors, results) => {
           const filters = req.query;
           const filteredUsers = results.filter(user => {
             let isValid = true;
+            console.log(user);
             for (key in filters) {
+              console.log(key, user[key], filters[key]);
               isValid = isValid && user[key] == filters[key];
             }
             return isValid;
