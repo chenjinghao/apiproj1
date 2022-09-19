@@ -139,15 +139,16 @@ router.post("/new", async (req, res) => {
 //Nithin: Updating Table
 router.put("/update", async (req, res) => {
   const data = {
-    // FirstName: req.body.FirstName,
+    FirstName: req.body.FirstName,
     // LastName: req.body.LastName,
-    // DownPaymentAllocated: req.body.DownPaymentAllocated,
-     GoalAmount: req.body.GoalAmount,
-     PurchaseDate: req.body.PurchaseDate,
-     KeyCollectionDate: req.body.KeyCollectionDate,
-     DownPaymentRequired: req.body.DownPaymentRequired,
-     MonthstoGoal: req.body.MonthstoGoal,
-     MonthlyContribution: req.body.MonthlyContribution,
+    // Email: req.body.Email,
+    DownPaymentAllocated: req.body.DownPaymentAllocated,
+    GoalAmount: req.body.GoalAmount,
+    // PurchaseDate: req.body.PurchaseDate,
+    // KeyCollectionDate: req.body.KeyCollectionDate,
+    // DownPaymentRequired: req.body.DownPaymentRequired,
+    // MonthstoGoal: req.body.MonthstoGoal,
+    // MonthlyContribution: req.body.MonthlyContribution,
     // Income: req.body.Income,
     // PersonalSavings: req.body.PersonalSavings,
     // Investment: req.body.Investment,
@@ -158,16 +159,12 @@ router.put("/update", async (req, res) => {
     // Transport: req.body.Transport,
     // Food: req.body.Food,
     GoogleID: req.body.GoogleID
-    //Email: req.body.Email
   }
   // const query = "UPDATE users SET FirstName = ?, LastName = ?, Email = ?, DownPaymentAllocated = ?, GoalAmount = ?, PurchaseDate = ?, KeyCollectionDate = ?, DownPaymentRequired = ?, MonthstoGoal = ?, MonthlyContribution: ?, Income = ?, PersonalSavings = ?, Investment = ?, Housing = ?, Insurance = ?, Others = ?, Mobile = ?, Transport = ?, Food = ? WHERE GoogleID = ?";
   const query = `UPDATE users SET
-  GoalAmount = ?,
-  PurchaseDate = ?,
-  KeyCollectionDate = ?,
-  DownPaymentRequired = ?,
-  MonthstoGoal = ?,
-  MonthlyContribution = ?
+  FirstName = ?,
+  DownPaymentAllocated = ?,
+  GoalAmount = ?
   WHERE GoogleID = ?`;
 
   mysqlConnection.query(query, Object.values(data), (error) => {
