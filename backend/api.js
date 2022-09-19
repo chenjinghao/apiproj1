@@ -24,13 +24,13 @@ router.get('/user', (req, res, next) => {
     mysqlConnection.query(`
       SELECT 
         FirstName
-        , LastName
+/*         , LastName
         , Email
         , DownPaymentAllocate
         , GoalAmount
-        , Purchasedate (date,'%d/%m/%Y')
+        , Purchasedate (date,'%d/%m/%Y') */
         , KeyCollectionDate (date,'%d/%m/%Y')
-        , DownPayment Required
+/*         , DownPayment Required
         , MonthstoGoal
         , MonthlyContribution
         , Income
@@ -41,7 +41,7 @@ router.get('/user', (req, res, next) => {
         , Others
         , Mobile
         , Transport
-        , Food
+        , Food */
       FROM users`, (errors, results) => {
     if (errors) {
       console.log(errors);
