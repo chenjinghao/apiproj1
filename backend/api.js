@@ -260,28 +260,10 @@ router.put("/update/contribution", async (req, res) => {
 router.put("/update", async (req, res) => {
   const data = {
     FirstName: req.body.FirstName,
-    // LastName: req.body.LastName,
-    // Email: req.body.Email,
     DownPaymentAllocated: req.body.DownPaymentAllocated,
     GoalAmount: req.body.GoalAmount,
-    // PurchaseDate: req.body.PurchaseDate,
-    // KeyCollectionDate: req.body.KeyCollectionDate,
-    // DownPaymentRequired: req.body.DownPaymentRequired,
-    // MonthstoGoal: req.body.MonthstoGoal,
-    // MonthlyContribution: req.body.MonthlyContribution,
-    // Income: req.body.Income,
-    // PersonalSavings: req.body.PersonalSavings,
-    // Investment: req.body.Investment,
-    // Housing: req.body.Housing,
-    // Insurance: req.body.Insurance,
-    // Others: req.body.Others,
-    // Mobile: req.body.Mobile,
-    // Transport: req.body.Transport,
-    // Food: req.body.Food,
-    //GoogleID: req.body.GoogleID
     Email: req.body.Email
   }
-  // const query = "UPDATE users SET FirstName = ?, LastName = ?, Email = ?, DownPaymentAllocated = ?, GoalAmount = ?, PurchaseDate = ?, KeyCollectionDate = ?, DownPaymentRequired = ?, MonthstoGoal = ?, MonthlyContribution: ?, Income = ?, PersonalSavings = ?, Investment = ?, Housing = ?, Insurance = ?, Others = ?, Mobile = ?, Transport = ?, Food = ? WHERE GoogleID = ?";
   const query = `UPDATE users SET
   FirstName = ?,
   DownPaymentAllocated = ?,
@@ -294,6 +276,57 @@ router.put("/update", async (req, res) => {
       console.log(data);
     } else {
       res.json({ status: "success", data: data });
+    }
+  });
+});
+
+//Nithin: Add New User to login table
+router.post("/new/login", async (req, res) => {
+  const loginData = {
+    email: req.body.email,
+    password: req.body.password
+  }
+  const query = `INSERT INTO login (email, password) VALUES (?, ?)`;
+  mysqlConnection.query(query, Object.values(loginData), (error) => {
+    if (error) {
+      res.json({ status: "failure", reason: error.code });
+      console.log(loginData);
+    } else {
+      res.json({ status: "success", data: loginData });
+    }
+  });
+});
+
+//Nithin: Add New User to assets table
+router.post("/new/asset", async (req, res) => {
+  const assetData = {
+    email: req.body.email
+  }
+  const query = `INSERT INTO assets (email) VALUES (?)`;
+  mysqlConnection.query(query, Object.values(assetData), (error) => {
+    if (error) {
+      res.json({ status: "failure", reason: error.code });
+      console.log(assetData);
+    } else {
+      res.json({ status: "success", data: assetData });
+    }
+  });
+});
+
+//Nithin: Add New User to users table
+router.post("/new/user", async (req, res) => {
+  const usersData = {
+    FirstName: req.body.FirstName,
+    LastName: req.body.LastName,
+    Email: req.body.email
+  }
+  const query = `INSERT INTO users (FirstName, LastName, Email) VALUES (?, ?, ?)`;
+  mysqlConnection.query(query, Object.values(usersData), (error) => {
+    if (error) {
+      res.json({ status: "failure", reason: error.code });
+      console.log(usersData);
+    } else {
+      res.json({ status: "success", data: usersData });
     }
   });
 });
@@ -366,7 +399,7 @@ router.put("/goalamt/:userID", (request, response) => {
     PurchaseDate = "${request.body.PurchaseDate}",
     KeyCollectionDate = "${request.body.KeyCollectionDate}"
   WHERE
-    GoogleID = "${request.params.userID}"`), (errors, results) => {
+    GoogleID = ${request.params.userID}`), (errors, results) => {
       if (errors) {
         console.log(errors);
         response.status(500).send("Some error occurred at the backend.");
@@ -386,7 +419,7 @@ router.put("/income/:userID", (request, response) => {
     Housing = ${request.body.Housing},
     Insurance = ${request.body.Insurance}
   WHERE
-    GoogleID = "${request.params.userID}"`), (errors, results) => {
+    GoogleID = ${request.params.userID}`), (errors, results) => {
       if (errors) {
         console.log(errors);
         response.status(500).send("Some error occurred at the backend.");
@@ -420,7 +453,7 @@ router.put("/downpayment/:userID", (request, response) => {
   SET
     DownPaymentAllocated = ${request.body.DownPaymentAllocated}
   WHERE
-    GoogleID = "${request.params.userID}"`), (errors, results) => {
+    GoogleID = ${request.params.userID}`), (errors, results) => {
       if (errors) {
         console.log(errors);
         response.status(500).send("Some error occurred at the backend.");
