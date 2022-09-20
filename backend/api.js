@@ -390,6 +390,12 @@ router.delete("/delete/user/", async (req, res) => {
       res.json({ status: "success", data: delData });
     }
   });
+});
+
+  router.delete("/delete/user1/", async (req, res) => {
+    var delData = {
+      email: req.body.email
+    }
   var query = `DELETE FROM assets where email = ?`;
   mysqlConnection.query(query, Object.values(delData), (error) => {
     if (error) {
@@ -399,6 +405,12 @@ router.delete("/delete/user/", async (req, res) => {
       res.json({ status: "success", data: delData });
     }
   });
+});
+
+router.delete("/delete/user2/", async (req, res) => {
+  var delData = {
+    email: req.body.email
+  }
   var query = `DELETE FROM users where email = ?`;
   mysqlConnection.query(query, Object.values(delData), (error) => {
     if (error) {
