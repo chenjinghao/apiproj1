@@ -64,7 +64,7 @@ mysqlConnection.query("select * from users", (errors, results) => {
 
 //Get Asset details -> Query in the form: {{url}}/assets?GoogleID=2&Income=8000
 router.get('/assets', (req, res, next) => {
-  mysqlConnection.query(`SELECT * FROM Assets`, (errors, results) => {
+  mysqlConnection.query(`SELECT * FROM assets`, (errors, results) => {
     if (errors) {
       console.log(errors);
       res.status(500).send("Some error occurred at the backend.");
@@ -318,7 +318,7 @@ router.post("/addasset/:userID", (request, response) => {
 
   let balance = parseInt(request.body.AccountBalance);
 
-  mysqlConnection.query(`INSERT INTO Assets (GoogleID, AccountName, AccountNumber, AccountBalance)
+  mysqlConnection.query(`INSERT INTO assets (GoogleID, AccountName, AccountNumber, AccountBalance)
   values ('${request.params.userID}','${request.body.AccountName}', '${request.body.AccountNumber}', '${balance}')`, (errors, results) => {
     if (errors) {
       console.log(errors);
