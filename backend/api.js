@@ -376,39 +376,6 @@ router.post("/new/user", async (req, res) => {
   });
 });
 
-//Beatrice router delete user
-router.delete("/delete/user", async (req, res) => {
-  var delData = {
-    email: req.body.email
-  }
-  var query = `DELETE FROM login where email = ?`;
-  mysqlConnection.query(query, Object.values(delData), (error) => {
-    if (error) {
-      res.json({ status: "failure", reason: error.code });
-      console.log(delData);
-    } else {
-      res.json({ status: "success", data: delData });
-    }
-  });
-  var query = `DELETE FROM assets where email = ?`;
-  mysqlConnection.query(query, Object.values(delData), (error) => {
-    if (error) {
-      res.json({ status: "failure", reason: error.code });
-      console.log(delData);
-    } else {
-      res.json({ status: "success", data: delData });
-    }
-  });
-  var query = `DELETE FROM users where email = ?`;
-  mysqlConnection.query(query, Object.values(delData), (error) => {
-    if (error) {
-      res.json({ status: "failure", reason: error.code });
-      console.log(delData);
-    } else {
-      res.json({ status: "success", data: delData });
-    }
-  });
-});
 
 
 //Add New User
