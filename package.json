@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "0.0.0",
   "description": "My first backend code.",
-  "main": "./backend/authdemo.js",
+  "main": "./backend/main.js",
   "scripts": {
     "start": "node ./backend/main.js"
   },
