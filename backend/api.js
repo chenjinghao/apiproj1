@@ -377,7 +377,7 @@ router.post("/new/user", async (req, res) => {
 });
 
 //Beatrice router delete user
-router.delete("/delete/user", async (req, res) => {
+router.delete("/delete/user/", async (req, res) => {
   var delData = {
     email: req.body.email
   }
