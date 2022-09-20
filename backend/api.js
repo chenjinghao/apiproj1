@@ -381,7 +381,7 @@ router.delete("/delete/user/", async (req, res) => {
   var delData = {
     email: req.body.email
   }
-  var query = `DELETE FROM login where email = ?`;
+  var query = `CALL DELETEUsers(?)`;
   mysqlConnection.query(query, Object.values(delData), (error) => {
     if (error) {
       res.json({ status: "failure", reason: error.code });
@@ -392,35 +392,35 @@ router.delete("/delete/user/", async (req, res) => {
   });
 });
 
-  router.delete("/delete/user1/", async (req, res) => {
-    var delData = {
-      email: req.body.email
-    }
-  var query = `DELETE FROM assets where email = ?`;
-  mysqlConnection.query(query, Object.values(delData), (error) => {
-    if (error) {
-      res.json({ status: "failure", reason: error.code });
-      console.log(delData);
-    } else {
-      res.json({ status: "success", data: delData });
-    }
-  });
-});
+//   router.delete("/delete/user1/", async (req, res) => {
+//     var delData = {
+//       email: req.body.email
+//     }
+//   var query = `CALL DELETEUsers(?)`;
+//   mysqlConnection.query(query, Object.values(delData), (error) => {
+//     if (error) {
+//       res.json({ status: "failure", reason: error.code });
+//       console.log(delData);
+//     } else {
+//       res.json({ status: "success", data: delData });
+//     }
+//   });
+// });
 
-router.delete("/delete/user2/", async (req, res) => {
-  var delData = {
-    email: req.body.email
-  }
-  var query = `DELETE FROM users where email = ?`;
-  mysqlConnection.query(query, Object.values(delData), (error) => {
-    if (error) {
-      res.json({ status: "failure", reason: error.code });
-      console.log(delData);
-    } else {
-      res.json({ status: "success", data: delData });
-    }
-  });
-});
+// router.delete("/delete/user2/", async (req, res) => {
+//   var delData = {
+//     email: req.body.email
+//   }
+//   var query = `DELETE FROM users where email = ?`;
+//   mysqlConnection.query(query, Object.values(delData), (error) => {
+//     if (error) {
+//       res.json({ status: "failure", reason: error.code });
+//       console.log(delData);
+//     } else {
+//       res.json({ status: "success", data: delData });
+//     }
+//   });
+// });
 
 //Add New User
 //router.post("/user/add", (request, response) => {
